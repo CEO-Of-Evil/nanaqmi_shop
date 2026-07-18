@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>♡ nanaqmi's cute corner ♡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ============================================
+  HOW TO CUSTOMIZE THIS PAGE
+  ============================================
+  Look for "EDIT ME" comments to:
+  - swap placeholder art/necklace photos for real ones
+  - update prices / product names in the shop section
+  - add more gallery pieces or webring friends
+  Both of Silvia's Instagram accounts are already linked
+  in the sidebar (personal + art/shop).
+  ============================================
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Press+Start+2P&display=swap');
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Comic Neue', cursive, sans-serif;
+    color: #7a4a5c;
+    background-color: #fff0f6;
+    background-image:
+      radial-gradient(#ffd3e8 22%, transparent 23%),
+      radial-gradient(#ffd3e8 22%, transparent 23%);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    animation: bgshift 4s linear infinite;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><text y="18" font-size="18">💗</text></svg>'), auto;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  @keyframes bgshift {
+    0%   { background-position: 0 0, 20px 20px; }
+    100% { background-position: 40px 40px, 60px 60px; }
+  }
+
+  a { color: #d6537a; text-decoration: none; }
+  a:hover { text-decoration: underline; color: #ff85b3; }
+
+  marquee {
+    background: #ffb6d1;
+    border-top: 2px ridge #fff;
+    border-bottom: 2px ridge #fff;
+    padding: 4px 0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: #6b2b41;
+  }
+
+  /* ---- floating original chibi stickers (orbiting corner decorations) ---- */
+  .sticker {
+    position: fixed;
+    z-index: 5;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 3px rgba(178,58,99,0.3));
+  }
+  .sticker-bunny { bottom: 10px; left: 12px; width: 70px; animation: bob 2.4s ease-in-out infinite; }
+  .sticker-star1 { top: 90px; right: 20px; width: 34px; animation: spin 6s linear infinite; }
+  .sticker-star2 { top: 160px; right: 60px; width: 22px; animation: spin 9s linear infinite reverse; }
+  .sticker-charm { bottom: 20px; right: 16px; width: 50px; animation: bob 3s ease-in-out infinite; }
+
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .page-wrap {
+    max-width: 920px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.78);
+    border: 4px double #ffb6d1;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255,133,179,0.4);
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+
+  header.banner {
+    background: linear-gradient(135deg, #ffc2d9, #ffe0ec);
+    text-align: center;
+    padding: 22px 10px 14px;
+    border-bottom: 3px dashed #ff8fb3;
+  }
+
+  header.banner h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 20px;
+    color: #b23a63;
+    text-shadow: 2px 2px 0 #fff, 3px 3px 0 #ffb6d1;
+    margin: 0;
+  }
+
+  header.banner p.tagline {
+    font-size: 14px;
+    margin-top: 8px;
+    color: #8a5064;
+  }
+
+  .stamp {
+    display: inline-block;
+    font-size: 11px;
+    background: #fff;
+    border: 1px dashed #ff8fb3;
+    padding: 2px 8px;
+    margin: 2px;
+    border-radius: 4px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+  }
+
+  nav.sidebar {
+    background: repeating-linear-gradient(45deg, #ffe4ef, #ffe4ef 10px, #fff0f6 10px, #fff0f6 20px);
+    border-right: 3px dashed #ff8fb3;
+    padding: 14px;
+  }
+
+  .pfp {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 3px #ff8fb3;
+    display: block;
+    margin: 0 auto 10px;
+    object-fit: cover;
+  }
+
+  .divider {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #b23a63;
+    background: #ffd3e8;
+    border: 1px solid #ff8fb3;
+    padding: 3px 0;
+    margin: 14px 0 8px;
+    border-radius: 4px;
+  }
+
+  .navbtn {
+    display: block;
+    text-align: center;
+    background: #fff;
+    border: 2px ridge #ff8fb3;
+    border-radius: 6px;
+    padding: 6px 4px;
+    margin: 6px 0;
+    font-size: 13px;
+    color: #b23a63;
+  }
+  .navbtn:hover { background: #ffe0ec; text-decoration: none; }
+
+  .status-box {
+    margin-top: 16px;
+    font-size: 11px;
+    background: #fff;
+    border: 1px dashed #ff8fb3;
+    padding: 8px;
+    border-radius: 6px;
+    line-height: 1.6;
+  }
+
+  main.content { padding: 18px 22px; }
+
+  section { margin-bottom: 22px; }
+
+  .about-box, .shop-box, .friends-box, .guestbook-box, .game-box, .pet-box {
+    background: #fff;
+    border: 2px ridge #ffb6d1;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  h2.section-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    color: #b23a63;
+    margin-top: 0;
+  }
+
+  /* shop */
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .shop-item {
+    background: #fff8fb;
+    border: 2px ridge #ffd3e8;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+  }
+  .shop-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ffd3e8;
+  }
+  .shop-item .price {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #b23a63;
+    margin: 4px 0;
+  }
+  .buy-btn {
+    display: inline-block;
+    background: #ff8fb3;
+    color: #fff !important;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .buy-btn:hover { background: #ff6b9e; text-decoration: none; }
+
+  /* gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .gallery figure {
+    margin: 0;
+    background: #fff;
+    border: 2px ridge #ffb6d1;
+    border-radius: 8px;
+    padding: 6px;
+    text-align: center;
+  }
+  .gallery img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ffd3e8;
+  }
+  .gallery figcaption { font-size: 11px; margin-top: 4px; color: #8a5064; }
+
+  .webring {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .webring a {
+    background: #ffe0ec;
+    border: 1px solid #ff8fb3;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .gb-entry { border-bottom: 1px dashed #ffb6d1; padding: 6px 0; }
+  .gb-entry b { color: #b23a63; }
+  .gb-form input, .gb-form textarea {
+    width: 100%;
+    font-family: 'Comic Neue', cursive;
+    border: 1px solid #ff8fb3;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 6px;
+  }
+  .gb-form button {
+    background: #ff8fb3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 14px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .gb-form button:hover { background: #ff6b9e; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    padding: 12px;
+    color: #a56478;
+    border-top: 2px dashed #ff8fb3;
+    background: #ffe9f2;
+  }
+
+  .counter {
+    font-family: 'Press Start 2P', monospace;
+    background: #000;
+    color: #ff9dc4;
+    padding: 4px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    letter-spacing: 2px;
+  }
+
+  .blink { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---- minigame: charm catcher ---- */
+  #charmGame {
+    display: block;
+    margin: 10px auto 0;
+    background: linear-gradient(#fff5fa, #ffe0ec);
+    border: 3px ridge #ff8fb3;
+    border-radius: 8px;
+    touch-action: none;
+  }
+  .game-hud {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: #b23a63;
+    margin: 8px 4px 0;
+  }
+  .game-btn {
+    display: block;
+    margin: 10px auto 0;
+    background: #ff8fb3;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 18px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+  }
+  .game-btn:hover { background: #ff6b9e; }
+
+  /* ---- minigame: pet mochi ---- */
+  .pet-box { margin-top: 16px; }
+  .pet-stage {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  #mochiSvg { width: 110px; transition: transform 0.15s; }
+  .pet-bars { flex: 1; min-width: 180px; }
+  .bar-row { margin-bottom: 8px; }
+  .bar-label { font-size: 11px; color: #8a5064; }
+  .bar-track {
+    background: #ffe0ec;
+    border: 1px solid #ff8fb3;
+    border-radius: 6px;
+    height: 12px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff8fb3, #ffb6d1);
+    transition: width 0.4s;
+  }
+  .pet-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .pet-actions button {
+    background: #fff;
+    border: 2px ridge #ff8fb3;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+    color: #b23a63;
+  }
+  .pet-actions button:hover { background: #ffe0ec; }
+  #mochiSpeech {
+    font-size: 12px;
+    font-style: italic;
+    color: #b23a63;
+    min-height: 18px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- hidden filter defs: gives boxes/art a slightly hand-traced, imperfect wobble -->
+<svg width="0" height="0" style="position:absolute;">
+  <filter id="sketchy">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.025" numOctaves="2" seed="7" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.2"/>
+  </filter>
+</svg>
+
+<!-- original decorative stickers, hand-drawn in SVG (no external/copyrighted art) -->
+<button class="sticker sticker-bunny" id="secretBunny" aria-label="a little secret" style="background:none; border:none; padding:0; cursor:pointer; pointer-events:auto;">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;">
+  <ellipse cx="35" cy="20" rx="8" ry="18" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+  <ellipse cx="60" cy="20" rx="8" ry="18" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+  <ellipse cx="35" cy="22" rx="3" ry="10" fill="#ffb6d1"/>
+  <ellipse cx="60" cy="22" rx="3" ry="10" fill="#ffb6d1"/>
+  <circle cx="48" cy="55" r="32" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+  <circle cx="38" cy="50" r="4" fill="#7a4a5c"/>
+  <circle cx="58" cy="50" r="4" fill="#7a4a5c"/>
+  <ellipse cx="48" cy="60" rx="4" ry="3" fill="#ff8fb3"/>
+  <path d="M40 66 Q48 72 56 66" stroke="#7a4a5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="24" cy="60" r="5" fill="#ffd3e8"/>
+  <circle cx="72" cy="60" r="5" fill="#ffd3e8"/>
+</svg>
+</button>
+<div id="secretNote" style="display:none; position:fixed; bottom:90px; left:12px; z-index:20; background:#fff; border:2px dashed #ff8fb3; border-radius:10px; padding:10px 14px; max-width:220px; font-size:12px; box-shadow:0 3px 10px rgba(178,58,99,0.3);">
+  psst ♡ this whole site was hand-built for you by someone who thinks your art, your charms, and you are pretty wonderful. keep making cute things, nana 🐰
+</div>
+
+<svg class="sticker sticker-star1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="25,2 30,18 47,18 33,28 38,45 25,35 12,45 17,28 3,18 20,18" fill="#ffd3e8" stroke="#ff8fb3" stroke-width="2"/>
+</svg>
+<svg class="sticker sticker-star2" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="25,2 30,18 47,18 33,28 38,45 25,35 12,45 17,28 3,18 20,18" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+</svg>
+
+<svg class="sticker sticker-charm" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="40" cy="14" r="6" fill="none" stroke="#b23a63" stroke-width="3"/>
+  <line x1="40" y1="20" x2="40" y2="34" stroke="#b23a63" stroke-width="2"/>
+  <path d="M40 34 C20 34 20 60 40 60 C60 60 60 34 40 34 Z" fill="#ffb6d1" stroke="#b23a63" stroke-width="2"/>
+  <circle cx="40" cy="47" r="5" fill="#fff"/>
+</svg>
+
+<marquee behavior="scroll" direction="left">
+  ♡ welcome to nanaqmi's cute corner ♡ don't forget to feed my tamaweb pet every day ♡ handmade necklaces now open for orders ♡ sign the guestbook before you leave ♡
+</marquee>
+
+<div class="page-wrap">
+
+  <header class="banner">
+    <h1>✧ nanaqmi's cute corner ✧</h1>
+    <p class="tagline">silvia's art, anime obsessions & handmade charms 🎀</p>
+    <span class="stamp">est. 2024</span>
+    <span class="stamp">98% cute</span>
+    <span class="stamp">accepting commissions</span>
+  </header>
+
+  <div class="body-grid">
+    <nav class="sidebar">
+      <!-- profile picture: her kitten photo -->
+      <img class="pfp" src="data:image/jpeg;base64,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" alt="Silvia's kitten">
+
+      <div class="divider">navi</div>
+      <a class="navbtn" href="#about">about me</a>
+      <a class="navbtn" href="#pet" style="background:#ffe0ec; font-weight:bold;">🐣 my tamaweb pet</a>
+      <a class="navbtn" href="#shop">necklace shop</a>
+      <a class="navbtn" href="#vinted">vinted closet</a>
+      <a class="navbtn" href="#gallery">art gallery</a>
+      <a class="navbtn" href="#games">minigames</a>
+      <a class="navbtn" href="#friends">friends</a>
+      <a class="navbtn" href="#guestbook">guestbook</a>
+
+      <div class="divider">find me</div>
+      <a class="navbtn" href="https://www.instagram.com/nanaqmi/" target="_blank">insta (personal)</a>
+      <a class="navbtn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">insta (shop/art)</a>
+      <a class="navbtn" href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">vinted closet</a>
+
+      <div class="status-box">
+        current mood: 🌸 dreamy <br>
+        currently making: a new charm necklace <br>
+        <span class="blink">● online now</span>
+      </div>
+    </nav>
+
+    <main class="content">
+
+      <section class="about-box" id="about">
+        <h2 class="section-title">about me</h2>
+        <p>
+          hii, i'm <b>Silvia</b>, but around here you can call me
+          <b>nanaqmi</b> ✧ this is my little corner of the internet where
+          i share my art, post my newest handmade necklaces, and gush
+          about anime and all things cute. i make everything by hand with
+          way too much love, so thank you for stopping by and supporting
+          a small creator 🎀 don't forget to feed my tamaweb pet, play the
+          minigames, and sign my guestbook before you go!
+        </p>
+      </section>
+
+      <section class="about-box" id="pet" style="margin-top:16px; border: 3px ridge #ff6b9e; background: linear-gradient(160deg, #fff, #ffeef6);">
+        <h2 class="section-title" style="display:flex; align-items:center; gap:6px;">🐣 my tamaweb pet <span class="stamp" style="font-family:'Comic Neue', cursive; font-size:10px;">feed me daily!</span></h2>
+        <p>
+          this little egg lives on my page now — she's raised through <b>Tamaweb</b>,
+          a free virtual pet game, and she's <i>mine</i>, not just a demo. she gets hungry,
+          she grows, she has moods. if you don't check in, she'll notice, so
+          <b>bookmark this page and come feed her every day</b> 🥚💕
+          (full credit to the Tamaweb devs for the game itself — i just live here now.)
+        </p>
+        <iframe src="https://tamawebgame.github.io/" title="Tamaweb virtual pet game" width="100%" height="520" style="border:3px ridge #ff8fb3; border-radius:8px; max-width:480px; display:block; margin:10px auto 0;" loading="lazy" allow="autoplay"></iframe>
+        <p style="font-size:11px; text-align:center; margin-top:6px;">not loading? <a href="https://tamawebgame.github.io/" target="_blank">open Tamaweb in its own tab</a></p>
+      </section>
+
+      <section class="shop-box" id="shop">
+        <h2 class="section-title">✧ necklace shop ✧</h2>
+        <p>all charms handmade by me! slide into my <a href="https://www.instagram.com/nanaqmi.art/" target="_blank">shop insta</a> to order or ask about customs 💌</p>
+        <p>also decluttering my closet sometimes — check my <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">Vinted</a> for secondhand finds! 👗</p>
+        <div class="shop-grid">
+          <!-- EDIT ME: swap the SVGs below for real product photos whenever she has them -->
+          <div class="shop-item">
+            <svg viewBox="0 0 100 100" style="width:100%; height:120px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 15 Q50 -2 80 15" stroke="#b23a63" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M20 15 Q18 45 50 62 Q82 45 80 15" stroke="#b23a63" stroke-width="2" fill="none"/>
+              <path d="M42 50 C32 42 34 30 44 32 C46 26 56 26 57 33 C66 32 67 44 58 51 C52 57 47 57 42 50 Z" fill="#ff8fb3" stroke="#b23a63" stroke-width="2"/>
+              <ellipse cx="50" cy="41" rx="4" ry="9" fill="#ffe0ec"/>
+            </svg>
+            <div class="price">$12</div>
+            <div>strawberry charm</div>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+          </div>
+          <div class="shop-item">
+            <svg viewBox="0 0 100 100" style="width:100%; height:120px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 14 Q50 -4 82 14" stroke="#b23a63" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M18 14 Q16 44 50 60 Q84 44 82 14" stroke="#b23a63" stroke-width="2" fill="none"/>
+              <polygon points="50,30 54,40 65,40 56,47 59,58 50,51 41,58 44,47 35,40 46,40" fill="#ffd48a" stroke="#b23a63" stroke-width="2"/>
+            </svg>
+            <div class="price">$15</div>
+            <div>star bead choker</div>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+          </div>
+          <div class="shop-item">
+            <svg viewBox="0 0 100 100" style="width:100%; height:120px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 15 Q50 -2 80 15" stroke="#b23a63" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M20 15 Q18 45 50 62 Q82 45 80 15" stroke="#b23a63" stroke-width="2" fill="none"/>
+              <ellipse cx="38" cy="42" rx="9" ry="7" fill="#fff" stroke="#b23a63" stroke-width="2"/>
+              <ellipse cx="63" cy="42" rx="9" ry="7" fill="#ffe0ec" stroke="#b23a63" stroke-width="2"/>
+              <circle cx="50" cy="46" r="7" fill="#fff" stroke="#b23a63" stroke-width="2"/>
+              <path d="M46 50 Q50 54 54 50" stroke="#b23a63" stroke-width="1.5" fill="none"/>
+            </svg>
+            <div class="price">$18</div>
+            <div>bunny bead set</div>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="shop-box" id="vinted" style="margin-top:16px;">
+        <h2 class="section-title">✧ vinted closet ✧</h2>
+        <p>secondhand clothes & finds, browse a few here or see everything on my <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">Vinted profile</a> 👗</p>
+
+        <!--
+          EDIT ME — how to drop in real Vinted items:
+          1. Save the item photo from Vinted (right-click > save image) as vinted1.jpg, vinted2.jpg, vinted3.jpg, vinted4.jpg
+             and put them in the same folder as this HTML file.
+          2. Replace each <img src="..."> below with src="vinted1.jpg" (etc).
+          3. Replace each href="#" with the direct link to that specific listing on Vinted.
+          4. Update the item name and price text to match.
+          You can copy/paste one .vinted-item block to add more than 4.
+        -->
+        <div class="shop-grid">
+          <div class="shop-item vinted-item">
+            <img src="https://placehold.co/200x260/ffe0ec/b23a63?text=photo+1" alt="Vinted item placeholder" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ffd3e8;">
+            <div class="price">€8</div>
+            <div>item name here</div>
+            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+          </div>
+          <div class="shop-item vinted-item">
+            <img src="https://placehold.co/200x260/ffd3e8/b23a63?text=photo+2" alt="Vinted item placeholder" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ffd3e8;">
+            <div class="price">€10</div>
+            <div>item name here</div>
+            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+          </div>
+          <div class="shop-item vinted-item">
+            <img src="https://placehold.co/200x260/ffe0ec/b23a63?text=photo+3" alt="Vinted item placeholder" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ffd3e8;">
+            <div class="price">€6</div>
+            <div>item name here</div>
+            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+          </div>
+          <div class="shop-item vinted-item">
+            <img src="https://placehold.co/200x260/ffd3e8/b23a63?text=photo+4" alt="Vinted item placeholder" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ffd3e8;">
+            <div class="price">€12</div>
+            <div>item name here</div>
+            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+          </div>
+        </div>
+        <p style="font-size:11px; text-align:center; margin-top:10px;">
+          <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">see all items on Vinted →</a>
+        </p>
+      </section>
+
+      <section class="gallery-section" id="gallery">
+        <h2 class="section-title">art gallery</h2>
+        <div class="gallery">
+          <!-- EDIT ME: swap these SVG doodles for scans/photos of her real art -->
+          <figure>
+            <svg viewBox="0 0 100 100" style="width:100%; height:130px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="48" r="30" fill="#fff5fa" stroke="#b23a63" stroke-width="2"/>
+              <circle cx="40" cy="44" r="3.5" fill="#7a4a5c"/>
+              <circle cx="60" cy="44" r="3.5" fill="#7a4a5c"/>
+              <path d="M42 58 Q50 64 58 58" stroke="#b23a63" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M28 30 Q34 14 44 22" stroke="#b23a63" stroke-width="2" fill="none"/>
+              <path d="M72 30 Q66 14 56 22" stroke="#b23a63" stroke-width="2" fill="none"/>
+              <circle cx="32" cy="55" r="4" fill="#ffb6d1" opacity="0.7"/>
+              <circle cx="68" cy="55" r="4" fill="#ffb6d1" opacity="0.7"/>
+            </svg>
+            <figcaption>fanart sketch ♡</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 100 100" style="width:100%; height:130px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 15 C25 15 18 40 28 58 C22 62 24 72 32 70 C36 78 60 80 66 70 C76 70 76 58 68 56 C78 40 72 15 50 15 Z" fill="#ffe0ec" stroke="#b23a63" stroke-width="2"/>
+              <circle cx="42" cy="45" r="3" fill="#7a4a5c"/>
+              <circle cx="58" cy="45" r="3" fill="#7a4a5c"/>
+              <ellipse cx="50" cy="54" rx="3" ry="2" fill="#b23a63"/>
+              <path d="M30 25 L20 12 M70 25 L80 12" stroke="#b23a63" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <figcaption>OC design</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 100 100" style="width:100%; height:130px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="65" rx="26" ry="22" fill="#fff" stroke="#b23a63" stroke-width="2"/>
+              <ellipse cx="32" cy="30" rx="7" ry="18" fill="#fff" stroke="#b23a63" stroke-width="2"/>
+              <ellipse cx="50" cy="26" rx="7" ry="20" fill="#fff" stroke="#b23a63" stroke-width="2"/>
+              <ellipse cx="68" cy="30" rx="7" ry="18" fill="#fff" stroke="#b23a63" stroke-width="2"/>
+              <circle cx="42" cy="62" r="3" fill="#7a4a5c"/>
+              <circle cx="58" cy="62" r="3" fill="#7a4a5c"/>
+              <path d="M45 70 Q50 74 55 70" stroke="#b23a63" stroke-width="1.5" fill="none"/>
+            </svg>
+            <figcaption>chibi practice</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 100 100" style="width:100%; height:130px; filter:url(#sketchy);" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 78 C20 58 18 32 38 26 C46 24 50 32 50 32 C50 32 54 24 62 26 C82 32 80 58 50 78 Z" fill="none" stroke="#b23a63" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <path d="M35 45 L45 45 M55 45 L65 45 M40 55 L60 55" stroke="#ffb6d1" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <figcaption>wip piece</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="games">
+        <h2 class="section-title" style="margin-bottom:10px;">✧ minigames ✧</h2>
+
+        <div class="game-box">
+          <h2 class="section-title" style="font-size:11px;">charm catcher</h2>
+          <p style="font-size:12px; margin:0 0 4px;">catch the falling charms with your basket! move your mouse (or finger) left and right. don't miss too many 💗</p>
+          <div class="game-hud">
+            <span id="scoreDisplay">score: 0</span>
+            <span id="timeDisplay">time: 30</span>
+            <span id="bestDisplay">best: 0</span>
+          </div>
+          <canvas id="charmGame" width="480" height="320"></canvas>
+          <button class="game-btn" id="startGameBtn">start game</button>
+        </div>
+
+        <div class="pet-box">
+          <h2 class="section-title" style="font-size:11px;">take care of mochi 🐰</h2>
+          <p style="font-size:12px; margin:0 0 8px;">mochi is nanaqmi's virtual bunny — feed, pet, and play to keep her happy!</p>
+          <div class="pet-stage">
+            <svg id="mochiSvg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="35" cy="20" rx="8" ry="18" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+              <ellipse cx="60" cy="20" rx="8" ry="18" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+              <ellipse cx="35" cy="22" rx="3" ry="10" fill="#ffb6d1"/>
+              <ellipse cx="60" cy="22" rx="3" ry="10" fill="#ffb6d1"/>
+              <circle cx="48" cy="55" r="32" fill="#fff" stroke="#ff8fb3" stroke-width="2"/>
+              <circle id="mochiEyeL" cx="38" cy="50" r="4" fill="#7a4a5c"/>
+              <circle id="mochiEyeR" cx="58" cy="50" r="4" fill="#7a4a5c"/>
+              <ellipse cx="48" cy="60" rx="4" ry="3" fill="#ff8fb3"/>
+              <path id="mochiMouth" d="M40 66 Q48 72 56 66" stroke="#7a4a5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="24" cy="60" r="5" fill="#ffd3e8"/>
+              <circle cx="72" cy="60" r="5" fill="#ffd3e8"/>
+            </svg>
+            <div class="pet-bars">
+              <div class="bar-row">
+                <div class="bar-label">hunger</div>
+                <div class="bar-track"><div class="bar-fill" id="hungerBar" style="width:70%;"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label">happiness</div>
+                <div class="bar-track"><div class="bar-fill" id="happyBar" style="width:70%;"></div></div>
+              </div>
+              <div id="mochiSpeech">...zzz...</div>
+              <div class="pet-actions">
+                <button id="feedBtn">🍓 feed</button>
+                <button id="petBtn">✋ pet</button>
+                <button id="playBtn">🧶 play</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="friends-box" id="friends">
+        <h2 class="section-title">friends & webring</h2>
+        <p>go check out these lovely people too!</p>
+        <div class="webring">
+          <!-- EDIT ME: swap in real friend site links -->
+          <a href="#">✧ friend 1 ✧</a>
+          <a href="#">✧ friend 2 ✧</a>
+          <a href="#">✧ friend 3 ✧</a>
+        </div>
+
+        <div style="margin-top:14px; text-align:center;">
+          <p style="font-size:11px; margin-bottom:6px;">grab my button for your own site! 88x31 club forever 💾</p>
+          <svg width="88" height="31" viewBox="0 0 88 31" xmlns="http://www.w3.org/2000/svg" style="filter:url(#sketchy); cursor:pointer;" title="right-click to save!">
+            <rect x="0.5" y="0.5" width="87" height="30" fill="#ffe0ec" stroke="#b23a63" stroke-width="1.5"/>
+            <circle cx="12" cy="15" r="7" fill="#fff" stroke="#b23a63" stroke-width="1.3"/>
+            <circle cx="9.5" cy="13" r="1.3" fill="#7a4a5c"/>
+            <circle cx="14.5" cy="13" r="1.3" fill="#7a4a5c"/>
+            <path d="M9 17 Q12 19 15 17" stroke="#7a4a5c" stroke-width="1" fill="none"/>
+            <text x="24" y="13" font-family="'Press Start 2P', monospace" font-size="6" fill="#b23a63">NANAQMI</text>
+            <text x="24" y="23" font-family="'Press Start 2P', monospace" font-size="6" fill="#b23a63">.CUTE.CORNER</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="guestbook-box" id="guestbook">
+        <h2 class="section-title">guestbook</h2>
+        <p>leave a little note before you go! (this box is just for show — hook it up to a real service like Cbox if you want it functional)</p>
+
+        <div class="gb-entry"><b>starlight_moth:</b> ur necklaces are SO cute i need the bunny one 🥹</div>
+        <div class="gb-entry"><b>anon:</b> found u thru insta, love the vibes here!!</div>
+
+        <form class="gb-form" onsubmit="alert('this is a placeholder form — connect it to a real service to make it work!'); return false;">
+          <input type="text" placeholder="your name" required>
+          <textarea rows="2" placeholder="say something nice :)" required></textarea>
+          <button type="submit">sign guestbook ♡</button>
+        </form>
+      </section>
+
+      <p style="text-align:center;">
+        <span class="counter">000427</span><br>
+        <small>you are visitor number 427!</small>
+      </p>
+
+    </main>
+  </div>
+
+  <footer>
+    made with ♡ by a friend for silvia &nbsp;|&nbsp; best viewed at any size, unlike it's 2003 &nbsp;|&nbsp; © 2024-forever
+  </footer>
+</div>
+
+<!-- ===== secret bunny easter egg ===== -->
+<script>
+(function() {
+  const btn = document.getElementById('secretBunny');
+  const note = document.getElementById('secretNote');
+  let open = false;
+  btn.addEventListener('click', () => {
+    open = !open;
+    note.style.display = open ? 'block' : 'none';
+  });
+})();
+</script>
+
+<!-- ===== heart cursor trail ===== -->
+<script>
+(function() {
+  const hearts = [];
+  const maxHearts = 18;
+  let lastX = 0, lastY = 0;
+
+  for (let i = 0; i < maxHearts; i++) {
+    const h = document.createElement('div');
+    h.textContent = '♡';
+    h.style.position = 'fixed';
+    h.style.pointerEvents = 'none';
+    h.style.fontSize = '16px';
+    h.style.color = '#ff8fb3';
+    h.style.zIndex = 9999;
+    h.style.opacity = 0;
+    h.style.transition = 'opacity 0.6s, transform 1s';
+    document.body.appendChild(h);
+    hearts.push(h);
+  }
+
+  let idx = 0;
+  document.addEventListener('mousemove', (e) => {
+    if (Math.hypot(e.clientX - lastX, e.clientY - lastY) < 12) return;
+    lastX = e.clientX; lastY = e.clientY;
+    const h = hearts[idx];
+    idx = (idx + 1) % hearts.length;
+    h.style.left = e.clientX + 'px';
+    h.style.top = e.clientY + 'px';
+    h.style.opacity = 1;
+    h.style.transform = 'translateY(0) scale(1)';
+    setTimeout(() => {
+      h.style.opacity = 0;
+      h.style.transform = 'translateY(-30px) scale(0.5)';
+    }, 50);
+  });
+})();
+</script>
+
+<!-- ===== minigame 1: charm catcher ===== -->
+<script>
+(function() {
+  const canvas = document.getElementById('charmGame');
+  const ctx = canvas.getContext('2d');
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  const timeDisplay = document.getElementById('timeDisplay');
+  const bestDisplay = document.getElementById('bestDisplay');
+  const startBtn = document.getElementById('startGameBtn');
+
+  const W = canvas.width, H = canvas.height;
+  let basketX = W / 2;
+  let charms = [];
+  let score = 0;
+  let timeLeft = 30;
+  let running = false;
+  let spawnTimer = 0;
+  let best = parseInt(localStorage.getItem('nanaqmiCharmBest') || '0', 10);
+  bestDisplay.textContent = 'best: ' + best;
+
+  const charmEmojis = ['💗','🌸','⭐','🍓','🎀'];
+
+  function resetGame() {
+    charms = [];
+    score = 0;
+    timeLeft = 30;
+    spawnTimer = 0;
+    scoreDisplay.textContent = 'score: 0';
+    timeDisplay.textContent = 'time: 30';
+  }
+
+  function spawnCharm() {
+    charms.push({
+      x: Math.random() * (W - 20) + 10,
+      y: -20,
+      speed: 1.5 + Math.random() * 2,
+      emoji: charmEmojis[Math.floor(Math.random() * charmEmojis.length)]
+    });
+  }
+
+  function updateMouse(clientX) {
+    const rect = canvas.getBoundingClientRect();
+    basketX = clientX - rect.left;
+    basketX = Math.max(30, Math.min(W - 30, basketX));
+  }
+
+  canvas.addEventListener('mousemove', (e) => updateMouse(e.clientX));
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches[0]) updateMouse(e.touches[0].clientX);
+    e.preventDefault();
+  }, { passive: false });
+
+  function drawBasket() {
+    ctx.font = '34px serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('🧺', basketX, H - 12);
+  }
+
+  function loop() {
+    if (!running) return;
+    ctx.clearRect(0, 0, W, H);
+
+    spawnTimer++;
+    if (spawnTimer > 40) {
+      spawnCharm();
+      spawnTimer = 0;
+    }
+
+    ctx.font = '26px serif';
+    ctx.textAlign = 'center';
+    for (let i = charms.length - 1; i >= 0; i--) {
+      const c = charms[i];
+      c.y += c.speed;
+      ctx.fillText(c.emoji, c.x, c.y);
+
+      if (c.y > H - 30 && c.y < H - 5 && Math.abs(c.x - basketX) < 28) {
+        score++;
+        scoreDisplay.textContent = 'score: ' + score;
+        charms.splice(i, 1);
+      } else if (c.y > H + 20) {
+        charms.splice(i, 1);
+      }
+    }
+
+    drawBasket();
+    requestAnimationFrame(loop);
+  }
+
+  let countdownInterval;
+  function startGame() {
+    resetGame();
+    running = true;
+    startBtn.textContent = 'playing...';
+    startBtn.disabled = true;
+    loop();
+    countdownInterval = setInterval(() => {
+      timeLeft--;
+      timeDisplay.textContent = 'time: ' + timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        running = false;
+        startBtn.disabled = false;
+        startBtn.textContent = 'play again';
+        if (score > best) {
+          best = score;
+          localStorage.setItem('nanaqmiCharmBest', best);
+          bestDisplay.textContent = 'best: ' + best;
+        }
+        ctx.font = 'bold 20px "Comic Neue", sans-serif';
+        ctx.fillStyle = '#b23a63';
+        ctx.fillText('game over! score: ' + score, W / 2, H / 2);
+      }
+    }, 1000);
+  }
+
+  startBtn.addEventListener('click', startGame);
+
+  // idle screen
+  ctx.font = 'bold 16px "Comic Neue", sans-serif';
+  ctx.fillStyle = '#b23a63';
+  ctx.textAlign = 'center';
+  ctx.fillText('press start to catch some charms! ✨', W / 2, H / 2);
+})();
+</script>
+
+<!-- ===== minigame 2: take care of mochi ===== -->
+<script>
+(function() {
+  const hungerBar = document.getElementById('hungerBar');
+  const happyBar = document.getElementById('happyBar');
+  const speech = document.getElementById('mochiSpeech');
+  const mochiSvg = document.getElementById('mochiSvg');
+  const eyeL = document.getElementById('mochiEyeL');
+  const eyeR = document.getElementById('mochiEyeR');
+  const mouth = document.getElementById('mochiMouth');
+
+  let saved = JSON.parse(localStorage.getItem('nanaqmiMochi') || 'null');
+  let hunger = saved ? saved.hunger : 70;
+  let happy = saved ? saved.happy : 70;
+
+  function clamp(v) { return Math.max(0, Math.min(100, v)); }
+
+  function render() {
+    hungerBar.style.width = hunger + '%';
+    happyBar.style.width = happy + '%';
+
+    if (happy < 30 || hunger < 30) {
+      mouth.setAttribute('d', 'M40 70 Q48 62 56 70'); // sad mouth
+    } else {
+      mouth.setAttribute('d', 'M40 66 Q48 72 56 66'); // happy mouth
+    }
+    localStorage.setItem('nanaqmiMochi', JSON.stringify({ hunger, happy }));
+  }
+
+  function say(msg) {
+    speech.textContent = msg;
+  }
+
+  function bounce() {
+    mochiSvg.style.transform = 'scale(1.08)';
+    setTimeout(() => { mochiSvg.style.transform = 'scale(1)'; }, 150);
+  }
+
+  document.getElementById('feedBtn').addEventListener('click', () => {
+    hunger = clamp(hunger + 20);
+    bounce();
+    say('yum yum, thank you! 🍓');
+    render();
+  });
+
+  document.getElementById('petBtn').addEventListener('click', () => {
+    happy = clamp(happy + 10);
+    bounce();
+    say('mochi loves pets ♡');
+    render();
+  });
+
+  document.getElementById('playBtn').addEventListener('click', () => {
+    happy = clamp(happy + 15);
+    hunger = clamp(hunger - 5);
+    bounce();
+    say('wheee that was fun!! 🧶');
+    render();
+  });
+
+  // slow natural decay so the pet feels alive across visits
+  setInterval(() => {
+    hunger = clamp(hunger - 1);
+    happy = clamp(happy - 1);
+    render();
+  }, 15000);
+
+  render();
+})();
+</script>
+
+</body>
+</html>
