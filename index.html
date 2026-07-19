@@ -6,23 +6,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--
-  ============================================
-  HOW TO CUSTOMIZE THIS PAGE
-  ============================================
-  Look for "EDIT ME" comments to:
-  - swap placeholder art/necklace photos for real ones
-  - update prices / product names in the shop section
-  - add more gallery pieces or webring friends
-  Both of Silvia's Instagram accounts are already linked
-  in the sidebar (personal + art/shop).
-  ============================================
+  ================================================================
+   ✧ WELCOME TO YOUR WEBSITE'S CODE! ✧
+  ================================================================
+  Hi! You don't need to know how to code to update this page.
+
+  HOW THIS FILE IS ORGANIZED (search for these ALL-CAPS labels
+  using Ctrl+F / Cmd+F to jump straight to a part):
+
+    1. <style> ............. all the COLORS and visual styling
+    2. SIDEBAR .............. profile pic, nav buttons, mood status
+    3. ABOUT ME .............. your intro text
+    4. NECKLACE SHOP ......... your handmade items for sale
+    5. VINTED CLOSET ......... secondhand items you're selling
+    6. ART GALLERY ........... your drawings/art photos
+    7. MINIGAMES ............. the charm-catching game
+    8. MUSIC & JUKEBOX ....... songs on your page
+    9. FRIENDS & WEBRING ..... links to friends' sites
+    10. GUESTBOOK ............ visitor notes
+    11. TAMAGOTCHI PET ....... your virtual pet, at the very bottom!
+
+  Every spot that's safe & easy to edit has a comment right above
+  it that starts with "// TIP:" — just search for "TIP:" and
+  you'll find every single thing you can change.
+
+  A FEW GROUND RULES:
+  - Only change text that's INSIDE quotes " " or between > and <
+    (like >this text here<). Don't delete the symbols themselves
+    (< > = " / etc.) — those are what make the page work.
+  - To swap a photo: put your new image file in the same folder
+    (e.g. the "fav_pic" or "nah" folder) and change the file name
+    inside the "src=" quotes to match your new file's name.
+  - If something ever breaks after an edit, undo your last change
+    (Ctrl+Z) and try again slowly, one small change at a time.
+  - When in doubt, just ask ChatGPT or Claude "how do I ___ in
+    this HTML file?" and paste the bit you're stuck on!
+  ================================================================
 -->
 
 <style>
+  /* // TIP: These are the fonts used on the page (Cinzel = the fancy
+     // titles, Cormorant Garamond = regular text). To use different
+     // fonts, browse https://fonts.google.com, click a font, copy
+     // its @import line, and replace this whole line with it — just
+     // remember to also update the font names further down in the
+     // CSS (search for 'Cinzel' and 'Cormorant Garamond'). */
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Press+Start+2P&display=swap');
 
   * { box-sizing: border-box; }
 
+  /* ================================================================
+     1. COLORS — change the whole site's look by editing these!
+     ================================================================
+     // TIP: This is the site's color palette. Every color used
+     // anywhere on the page is one of these 12 values, so changing
+     // one here changes it EVERYWHERE at once. Each one is a hex
+     // code (the # + 6 letters/numbers). Pick new colors visually
+     // at https://htmlcolorcodes.com or https://coolors.co and
+     // just paste the code in, keeping the # at the front.
+     // - "pearl" shades = the soft whites/greys (backgrounds, boxes)
+     // - "silver" shades = the greyish-blue text & borders
+     // - "glow" shades = the sparkle/shadow glow effects
+     // - "goth-black" shades = the near-black accents (choker, text)
+  ================================================================ */
   :root {
     --pearl-1:#ffffff;
     --pearl-2:#f7f7f7;
@@ -45,6 +91,11 @@
     font-family: 'Cormorant Garamond', 'IM Fell English', serif;
     color: var(--silver-3);
     background-color: var(--pearl-2);
+    /* // TIP: to change the page's background image, put a new image
+       // in the "pagepictures" folder and swap the file name below
+       // (the part in quotes after url(...)). Keep the white
+       // gradient line above it as-is — that's what keeps text
+       // readable on top of your picture. */
     background-image:
       linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)),
       url('pagepictures/backround.png');
@@ -523,31 +574,6 @@
     letter-spacing: .5px;
   }
 
-  .gb-entry { border-bottom: 1px dashed var(--pearl-4); padding: 8px 0; }
-  .gb-entry b { color: var(--goth-black-soft); font-family:'Cinzel', serif; font-size: 12px; letter-spacing: .5px; }
-  .gb-form input, .gb-form textarea {
-    width: 100%;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    background: rgba(255,255,255,.7);
-    border: 1px solid var(--silver-1);
-    border-radius: 4px;
-    padding: 7px;
-    margin-bottom: 8px;
-  }
-  .gb-form button {
-    background: rgba(255,255,255,.9);
-    border: 1px solid var(--silver-1);
-    color: var(--silver-3);
-    border-radius: 5px;
-    padding: 7px 16px;
-    font-size: 13px;
-    letter-spacing: .5px;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-  }
-  .gb-form button:hover { box-shadow: 0 0 12px rgba(255,255,255,.9); }
-
   footer {
     text-align: center;
     font-size: 11px;
@@ -766,6 +792,9 @@
   <path d="M40 18 C32 20 30 28 36 32 C30 32 28 40 40 42 C52 40 50 32 44 32 C50 28 48 20 40 18 Z" fill="#f2f4f9" stroke="#dadada" stroke-width="1"/>
 </svg>
 
+<!-- // TIP: this is the scrolling text banner at the top of the page.
+     // Just edit the sentences below (separated by ✧). Add or
+     // remove as many as you like! -->
 <marquee behavior="scroll" direction="left">
   ✧ welcome to nanaqmi's sanctuary ✧ don't forget to feed my little pet every day ✧ handmade necklaces now open for orders ✧ sign the guestbook before you leave ✧ may the stars guide your path ✧
 </marquee>
@@ -777,6 +806,11 @@
     <div class="banner-glow"></div>
     <div class="banner-stars"></div>
     <div class="banner-wings"><img src="pagepictures/head_picture.png" alt="two swans forming a heart"></div>
+    <!-- // TIP: this is your page title + tagline. Change the name
+         // in <h1>, the sentence in .tagline, and the little quote
+         // in .verse. The 3 "stamp" badges below are short little
+         // labels — edit their text, delete one, or add more by
+         // copying a whole <span class="stamp">...</span> line. -->
     <div class="banner-content">
       <h1>nanaqmi</h1>
       <div class="banner-choker"></div>
@@ -790,12 +824,17 @@
 
   <div class="body-grid">
     <nav class="sidebar">
-      <!-- profile picture: her kitten photo -->
+      <!-- // TIP: this is the round profile photo. Put a new photo in
+           // the "pagepictures" folder and change the file name below. -->
       <img class="pfp" src="pagepictures/profile.png" alt="nanaqmi">
 
       <div class="divider">navi</div>
+      <!-- // TIP: these buttons jump down to each section of the page.
+           // The text between > and < is what shows on the button.
+           // If you add a brand new section, give it an id="something"
+           // and add a matching button here with href="#something". -->
       <a class="navbtn" href="#about">about me</a>
-      <a class="navbtn" href="#pet" style="background:#f7f7f7; font-weight:bold;">🐣 my tamaweb pet</a>
+      <a class="navbtn" href="#mypet" style="background:#f7f7f7; font-weight:bold;">🐰 my tamagotchi</a>
       <a class="navbtn" href="#shop">necklace shop</a>
       <a class="navbtn" href="#vinted">vinted closet</a>
       <a class="navbtn" href="#gallery">art gallery</a>
@@ -805,12 +844,16 @@
       <a class="navbtn" href="#guestbook">guestbook</a>
 
       <div class="divider">find me</div>
+      <!-- // TIP: swap these 3 links for your own social/shop pages.
+           // Just change the web address inside the quotes after href=. -->
       <a class="navbtn" href="https://www.instagram.com/nanaqmi/" target="_blank">insta (personal)</a>
       <a class="navbtn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">insta (shop/art)</a>
       <a class="navbtn" href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">vinted closet</a>
 
       <div class="status-box">
-        <!-- EDIT ME: update mood whenever hers changes -->
+        <!-- // TIP: this little box is your "currently..." status.
+             // Update it as often as you like — mood, what you're
+             // making, reading, etc. It's just plain text, edit away! -->
         current mood: 😴 sleepy (╥﹏╥) <br>
         currently making: a new charm necklace <br>
         currently reading: Metamorphosis (Kafka) <br>
@@ -820,15 +863,28 @@
     </nav>
 
     <main class="content">
+      <!-- // TIP: this one-liner is an old-school personal-site tradition
+           // (like Myspace's "who I'd like to meet"). Change it or
+           // delete the whole <section>...</section> block if you don't
+           // want it. -->
       <section class="about-box" style="margin-bottom:16px; font-size:12px; font-style:italic; text-align:center;">
         who i'd like to meet: people who like to play games or handmake stuff, just like me ✧
       </section>
 
+      <!-- // TIP: the "blessing of the day" changes automatically each
+           // day of the month — it picks one line from a list. To edit
+           // the list of blessings, scroll way down to the script
+           // labeled "blessing of the day" near the bottom of the file
+           // and edit the sentences there. -->
       <section class="about-box blessing-box" id="blessing" style="margin-bottom:16px;">
         <span class="bl-label">blessing of the day</span>
         <p id="blessingText">"may your path be lit by quiet stars."</p>
       </section>
 
+      <!-- // TIP: this is your main "about me" text. Rewrite this
+           // paragraph however you like — it's just normal text
+           // between the <p> and </p> tags. Keep the <b>bold</b> tags
+           // around any word you want bolded, or remove them. -->
       <section class="about-box" id="about">
         <h2 class="section-title">about me</h2>
         <p>
@@ -839,37 +895,33 @@
           alone in my room making stuff or out shopping for cute little
           things — i make everything by hand with way too much love, so
           thank you for stopping by and supporting a small creator ✧
-          don't forget to feed my tamaweb pet, play the minigames, and
-          sign my guestbook before you go!
+          don't forget to feed my tamagotchi at the bottom of the page,
+          play the minigames, and sign my guestbook before you go!
         </p>
       </section>
 
-      <section class="about-box" id="pet" style="margin-top:16px; border: 3px ridge #c7cddb; background: linear-gradient(160deg, #fff, #f7f7f7);">
-        <h2 class="section-title" style="display:flex; align-items:center; gap:6px;">🐣 my tamaweb pet <span class="stamp" style="font-family:'Cormorant Garamond', serif; font-size:10px;">feed me daily!</span></h2>
-        <p>
-          this little egg lives on my page now — she's raised through <b>Tamaweb</b>,
-          a free virtual pet game, and she's <i>mine</i>, not just a demo. she gets hungry,
-          she grows, she has moods. if you don't check in, she'll notice, so
-          <b>bookmark this page and come feed her every day</b> 🥚💕
-          (full credit to the Tamaweb devs for the game itself — i just live here now.)
-        </p>
-        <div style="text-align:center; margin:10px 0 8px; font-family:'Cormorant Garamond', serif; font-size:11px; color:#71798c; letter-spacing:0.5px;">
-          ✧ press play below to wake her up ✧
-        </div>
-        <div style="text-align:center; margin-bottom:8px;">
-          <img id="play-button" src="https://transparentpng.com" alt="Play" style="width:60px; cursor:pointer; filter: drop-shadow(0 0 4px #ffffff);">
-        </div>
-        <iframe id="tamaweb-frame" src="https://autosam.github.io/Tamaweb/" title="Tamaweb virtual pet game" width="100%" height="520" style="border:3px ridge #9fa5b5; border-radius:8px; max-width:480px; display:block; margin:10px auto 0; background:#fff;" loading="lazy" allow="autoplay" allowfullscreen></iframe>
-        <p style="font-size:11px; text-align:center; margin-top:6px; color:#71798c;">// nanaqmi approved // take good care of her ✧ //</p>
-        <p style="font-size:11px; text-align:center; margin-top:6px;">not loading? <a href="https://autosam.github.io/Tamaweb/" target="_blank">open Tamaweb in its own tab</a></p>
-      </section>
+      <!-- // TIP: your virtual pet tamagotchi now lives at the very
+           // bottom of the page as a big finale section (search for
+           // "TAMAGOTCHI PET" further down). It used to be an embedded
+           // third-party game here, but that version was unreliable
+           // (it depended on someone else's site staying online) and
+           // didn't match the page's look — so it's now a fully
+           // custom, self-contained pet that always works. -->
 
       <section class="shop-box" id="shop">
         <h2 class="section-title">✧ necklace shop ✧</h2>
         <p>all charms handmade by me! slide into my <a href="https://www.instagram.com/nanaqmi.art/" target="_blank">shop insta</a> to order or ask about customs 💌</p>
         <p>also decluttering my closet sometimes — check my <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">Vinted</a> for secondhand finds! 👗</p>
+        <!-- // TIP: each "shop-item" block below is ONE product card.
+             // To edit a card: change the image file name in src="",
+             // the price, and the name text.
+             // To ADD a new product: copy one whole block (from
+             // <div class="shop-item"> down to the matching </div>)
+             // and paste it right after another one.
+             // To REMOVE a product: delete one whole block the same way.
+             // Photos load from the "nah" folder — add new photos there
+             // first, then reference them here. -->
         <div class="shop-grid">
-          <!-- real photos loaded from the nah/ folder in the repo -->
           <div class="shop-item">
             <img src="nah/nah_2.png" alt="handmade necklace" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">$12</div>
@@ -901,10 +953,12 @@
         <h2 class="section-title">✧ vinted closet ✧</h2>
         <p>secondhand clothes & finds, browse a few here or see everything on my <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">Vinted profile</a> 👗</p>
 
-        <!--
-          real photos now loaded from the obl/ folder in the repo.
-          EDIT ME — update the price / item name / href="#" (link to the exact Vinted listing) for each item below.
-        -->
+        <!-- // TIP: same idea as the shop above — copy/paste a whole
+             // "shop-item vinted-item" block to add an item, delete
+             // one to remove it. Photos load from the "obl" folder.
+             // Change href="#" to the real Vinted listing link for
+             // each item (grab it from your Vinted app/site's share
+             // or address bar). -->
         <div class="shop-grid">
           <div class="shop-item vinted-item">
             <img src="obl/obl_1.png" alt="Vinted item" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
@@ -938,8 +992,12 @@
 
       <section class="gallery-section" id="gallery">
         <h2 class="section-title">art gallery</h2>
+        <!-- // TIP: to add a new art piece, copy one whole
+             // <figure>...</figure> block and paste it below the
+             // others, then change the image file name and caption.
+             // Photos load from the "fav_pic" folder — drop new
+             // images there first. -->
         <div class="gallery">
-          <!-- real photos loaded from the fav_pic/ folder in the repo -->
           <figure>
             <img src="fav_pic/animegirl.png" alt="anime girl fanart" style="width:100%; height:130px; object-fit:cover; border-radius:6px;">
             <figcaption>fanart sketch ♡</figcaption>
@@ -978,41 +1036,12 @@
           <button class="game-btn" id="startGameBtn">start game</button>
         </div>
 
-        <div class="pet-box">
-          <h2 class="section-title" style="font-size:11px;">take care of mochi 🐰</h2>
-          <p style="font-size:12px; margin:0 0 8px;">mochi is nanaqmi's virtual bunny — feed, pet, and play to keep her happy!</p>
-          <div class="pet-stage">
-            <svg id="mochiSvg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="35" cy="20" rx="8" ry="18" fill="#fff" stroke="#9fa5b5" stroke-width="2"/>
-              <ellipse cx="60" cy="20" rx="8" ry="18" fill="#fff" stroke="#9fa5b5" stroke-width="2"/>
-              <ellipse cx="35" cy="22" rx="3" ry="10" fill="#dadada"/>
-              <ellipse cx="60" cy="22" rx="3" ry="10" fill="#dadada"/>
-              <circle cx="48" cy="55" r="32" fill="#fff" stroke="#9fa5b5" stroke-width="2"/>
-              <circle id="mochiEyeL" cx="38" cy="50" r="4" fill="#71798c"/>
-              <circle id="mochiEyeR" cx="58" cy="50" r="4" fill="#71798c"/>
-              <ellipse cx="48" cy="60" rx="4" ry="3" fill="#9fa5b5"/>
-              <path id="mochiMouth" d="M40 66 Q48 72 56 66" stroke="#71798c" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <circle cx="24" cy="60" r="5" fill="#ececec"/>
-              <circle cx="72" cy="60" r="5" fill="#ececec"/>
-            </svg>
-            <div class="pet-bars">
-              <div class="bar-row">
-                <div class="bar-label">hunger</div>
-                <div class="bar-track"><div class="bar-fill" id="hungerBar" style="width:70%;"></div></div>
-              </div>
-              <div class="bar-row">
-                <div class="bar-label">happiness</div>
-                <div class="bar-track"><div class="bar-fill" id="happyBar" style="width:70%;"></div></div>
-              </div>
-              <div id="mochiSpeech">...zzz...</div>
-              <div class="pet-actions">
-                <button id="feedBtn">🍓 feed</button>
-                <button id="petBtn">✋ pet</button>
-                <button id="playBtn">🧶 play</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- // TIP: my tamagotchi pet used to live here, but it's been
+             // moved down to its own big section at the very bottom
+             // of the page (search "TAMAGOTCHI PET"). The game code
+             // for charm catcher above is more complex, so it's best
+             // left alone — but you CAN safely edit the sentence in
+             // the <p> tag above it any time. -->
       </section>
 
       <section class="friends-box" id="taste" style="margin-bottom:22px;">
@@ -1024,6 +1053,12 @@
           i contain multitudes: bows and beetles both 🦋🖤
         </p>
 
+        <!-- // TIP: to swap a jukebox song — find the song on YouTube,
+             // copy the part of its URL after "v=" (that's the video
+             // ID), and paste it into BOTH the data-vid="..." AND the
+             // button text below for one of the 4 buttons. To add a
+             // 5th button, copy a whole <button class="navbtn
+             // jukebox-btn"...>...</button> line and paste it in. -->
         <div style="background:#fff; border:2px ridge #71798c; border-radius:8px; padding:12px; margin-top:12px;">
           <p style="font-size:11px; margin:0 0 8px; text-align:center; font-family:'Press Start 2P', monospace; color:#71798c;">nanaqmi's jukebox</p>
           <div id="jukeboxFrameWrap" style="position:relative; width:100%; max-width:480px; margin:0 auto; aspect-ratio:16/9; border-radius:6px; overflow:hidden; border:2px solid #71798c;">
@@ -1042,8 +1077,10 @@
       <section class="friends-box" id="friends">
         <h2 class="section-title">friends & webring</h2>
         <p>go check out these lovely people too!</p>
+        <!-- // TIP: change "#" to a friend's real website link, and
+             // the text between > and < to their name. Copy a whole
+             // <a href="#">...</a> line to add more friends. -->
         <div class="webring">
-          <!-- EDIT ME: swap in real friend site links -->
           <a href="#">✧ friend 1 ✧</a>
           <a href="#">✧ friend 2 ✧</a>
           <a href="#">✧ friend 3 ✧</a>
@@ -1063,28 +1100,137 @@
         </div>
       </section>
 
+      <!-- // TIP: this is your real, LIVE guestbook powered by Cbox —
+           // visitors can actually leave notes here now (it's not a
+           // fake form anymore). If the box ever stops loading:
+           //   1. log into my.cbox.ws
+           //   2. go to Settings → Publish to grab a fresh embed code
+           //   3. replace the whole <iframe src="...">...</iframe>
+           //      line below with the new one
+           // Your box's ID is 964722 and its security tag is VlaJTw —
+           // you'll need those if Cbox ever asks you to confirm which
+           // box you're editing. If Cbox has a domain allow-list
+           // setting, make sure the site's real address (wherever
+           // you end up hosting it, e.g. a GitHub Pages link) is on
+           // that list, or the box may refuse to load. -->
       <section class="guestbook-box" id="guestbook">
         <h2 class="section-title">guestbook</h2>
-        <p>leave a little note before you go! (this box is just for show — hook it up to a real service like Cbox if you want it functional)</p>
+        <p>leave a little note before you go! ✧</p>
 
-        <div class="gb-entry"><b>starlight_moth:</b> ur necklaces are SO cute i need the bunny one 🥹</div>
-        <div class="gb-entry"><b>anon:</b> found u thru insta, love the vibes here!!</div>
-
-        <form class="gb-form" onsubmit="alert('this is a placeholder form — connect it to a real service to make it work!'); return false;">
-          <input type="text" placeholder="your name" required>
-          <textarea rows="2" placeholder="say something nice :)" required></textarea>
-          <button type="submit">sign guestbook ♡</button>
-        </form>
+        <div style="border-radius:8px; overflow:hidden; border:1px solid var(--silver-1);">
+          <iframe src="https://www5.cbox.ws/box/?boxid=964722&boxtag=VlaJTw" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto" style="display:block;"></iframe>
+        </div>
       </section>
 
+      <!-- // TIP: this retro visitor counter is just a fun decoration,
+           // it doesn't count for real — feel free to bump the number
+           // up any time you like! -->
       <p style="text-align:center;">
         <span class="counter">000427</span><br>
         <small>you are visitor number 427!</small>
       </p>
 
+      <!-- ================================================================
+           11. TAMAGOTCHI PET — the grand finale of the page!
+           ================================================================
+           // TIP: this whole section is your virtual pet. The stuff
+           // that's easy & safe to change is marked below. The pet's
+           // brain (how hungry/happy math works) lives in the
+           // <script> near the very bottom of the file, labeled
+           // "TAMAGOTCHI PET SCRIPT" — you can rename your pet right
+           // on the page itself using the little name field, no code
+           // editing needed!
+      ================================================================ -->
+      <section class="pet-box" id="mypet" style="margin-top:22px; border: 3px ridge #c7cddb; background: linear-gradient(160deg, #fff, #f7f7f7);">
+        <h2 class="section-title" style="text-align:center; font-size:16px;">✧ adopt my tamagotchi ✧</h2>
+        <!-- // TIP: this intro paragraph is plain text, edit it however you like. -->
+        <p style="text-align:center;">
+          say hello to <b id="petNameDisplay">mochi</b> 🐰 — my virtual pet who lives right
+          here on the page! feed her, pet her, and play with her to keep
+          her happy. she remembers you (and your care) even after you
+          close the tab, so <b>bookmark this page and visit her daily</b> 💌
+        </p>
+
+        <div style="text-align:center; margin-bottom:14px;">
+          <!-- // TIP: type a new name here and press "rename" to give
+               // your pet a different name — it'll remember it forever! -->
+          <input id="petNameInput" type="text" placeholder="rename your pet..." maxlength="16"
+            style="font-family:'Cormorant Garamond', serif; font-size:13px; padding:6px 10px; border:1px solid var(--silver-1); border-radius:5px; margin-right:6px; text-align:center;">
+          <button class="game-btn" id="petRenameBtn" style="display:inline-block; margin:0; padding:6px 14px;">rename</button>
+        </div>
+
+        <div class="pet-stage" style="justify-content:center;">
+          <div style="text-align:center;">
+            <svg id="mochiSvg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:150px;">
+              <ellipse cx="35" cy="20" rx="8" ry="18" fill="#fff" stroke="#9fa5b5" stroke-width="2"/>
+              <ellipse cx="60" cy="20" rx="8" ry="18" fill="#fff" stroke="#9fa5b5" stroke-width="2"/>
+              <ellipse cx="35" cy="22" rx="3" ry="10" fill="#dadada"/>
+              <ellipse cx="60" cy="22" rx="3" ry="10" fill="#dadada"/>
+              <circle cx="48" cy="55" r="32" fill="#fff" stroke="#9fa5b5" stroke-width="2"/>
+              <circle id="mochiEyeL" cx="38" cy="50" r="4" fill="#71798c"/>
+              <circle id="mochiEyeR" cx="58" cy="50" r="4" fill="#71798c"/>
+              <ellipse cx="48" cy="60" rx="4" ry="3" fill="#9fa5b5"/>
+              <path id="mochiMouth" d="M40 66 Q48 72 56 66" stroke="#71798c" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="24" cy="60" r="5" fill="#ececec"/>
+              <circle cx="72" cy="60" r="5" fill="#ececec"/>
+            </svg>
+            <div id="petLevelBadge" class="stamp" style="margin-top:2px;">baby ✧ lvl 1</div>
+          </div>
+          <div class="pet-bars">
+            <div class="bar-row">
+              <div class="bar-label">hunger</div>
+              <div class="bar-track"><div class="bar-fill" id="hungerBar" style="width:70%;"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">happiness</div>
+              <div class="bar-track"><div class="bar-fill" id="happyBar" style="width:70%;"></div></div>
+            </div>
+            <div id="mochiSpeech">...zzz...</div>
+            <div class="pet-actions">
+              <button id="feedBtn">🍓 feed</button>
+              <button id="petBtn">✋ pet</button>
+              <button id="playBtn">🧶 play</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider" style="margin-top:20px;">also raising, via tamaweb</div>
+
+        <!-- // TIP: this second pet is a free game from another site
+             // (Tamaweb), embedded here in a frame. Since it lives on
+             // someone else's server, it can occasionally be slower to
+             // load than mochi above, or stop working if that site
+             // ever goes offline — that's just how embedded games
+             // work. If it ever stops loading, the "open in its own
+             // tab" link below still works even if the embed doesn't. -->
+        <p style="text-align:center;">
+          this little egg lives on my page too — she's raised through <b>Tamaweb</b>,
+          a free virtual pet game, and she's <i>mine</i>, not just a demo. she gets hungry,
+          she grows, she has moods. if you don't check in, she'll notice, so
+          <b>bookmark this page and come feed her every day</b> 🥚💕
+          (full credit to the Tamaweb devs for the game itself — i just live here now.)
+        </p>
+        <div style="text-align:center; margin:10px 0 8px; font-family:'Cormorant Garamond', serif; font-size:11px; color:#71798c; letter-spacing:0.5px;">
+          ✧ press play below to wake her up ✧
+        </div>
+        <div style="text-align:center; margin-bottom:8px;">
+          <!-- // TIP: this play button is just decoration (hand-drawn
+               // SVG, not a photo), so it'll never show up broken. -->
+          <svg width="52" height="52" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 4px #ffffff); cursor:pointer;">
+            <circle cx="30" cy="30" r="27" fill="#ffffff" stroke="#9fa5b5" stroke-width="2"/>
+            <polygon points="24,18 24,42 42,30" fill="#71798c"/>
+          </svg>
+        </div>
+        <iframe id="tamaweb-frame" src="https://autosam.github.io/Tamaweb/" title="Tamaweb virtual pet game" width="100%" height="520" style="border:3px ridge #9fa5b5; border-radius:8px; max-width:480px; display:block; margin:10px auto 0; background:#fff;" loading="lazy" allow="autoplay" allowfullscreen></iframe>
+        <p style="font-size:11px; text-align:center; margin-top:6px; color:#71798c;">// nanaqmi approved // take good care of her ✧ //</p>
+        <p style="font-size:11px; text-align:center; margin-top:6px;">not loading? <a href="https://autosam.github.io/Tamaweb/" target="_blank">open Tamaweb in its own tab</a></p>
+      </section>
+
     </main>
   </div>
 
+  <!-- // TIP: this is the very bottom credit line of the page. Update
+       // the name/year, or add your own message. -->
   <footer>
     made with ♡ by a friend for silvia &nbsp;|&nbsp; best viewed at any size, unlike it's 2003 &nbsp;|&nbsp; © 2024-forever
   </footer>
@@ -1313,38 +1459,96 @@
 })();
 </script>
 
-<!-- ===== minigame 2: take care of mochi ===== -->
+<!-- ================================================================
+     TAMAGOTCHI PET SCRIPT — makes the "adopt my tamagotchi" section
+     at the bottom of the page actually work.
+     ================================================================
+     // TIP: you don't need to touch this code to rename your pet —
+     // there's a name box right on the page for that! The bits below
+     // marked "// TIP:" are the only ones safe to tweak by hand:
+     // the messages your pet says, how fast it gets hungry, and the
+     // level-up thresholds. Everything else just makes the numbers
+     // and animations work, so it's best left alone.
+================================================================ -->
 <script>
 (function() {
-  const hungerBar = document.getElementById('hungerBar');
-  const happyBar = document.getElementById('happyBar');
-  const speech = document.getElementById('mochiSpeech');
-  const mochiSvg = document.getElementById('mochiSvg');
-  const eyeL = document.getElementById('mochiEyeL');
-  const eyeR = document.getElementById('mochiEyeR');
-  const mouth = document.getElementById('mochiMouth');
+  const hungerBar   = document.getElementById('hungerBar');
+  const happyBar    = document.getElementById('happyBar');
+  const speech      = document.getElementById('mochiSpeech');
+  const mochiSvg    = document.getElementById('mochiSvg');
+  const eyeL        = document.getElementById('mochiEyeL');
+  const eyeR        = document.getElementById('mochiEyeR');
+  const mouth       = document.getElementById('mochiMouth');
+  const nameDisplay = document.getElementById('petNameDisplay');
+  const nameInput   = document.getElementById('petNameInput');
+  const renameBtn   = document.getElementById('petRenameBtn');
+  const levelBadge  = document.getElementById('petLevelBadge');
 
-  let saved = JSON.parse(localStorage.getItem('nanaqmiMochi') || 'null');
-  let hunger = saved ? saved.hunger : 70;
-  let happy = saved ? saved.happy : 70;
+  // // TIP: change these messages any time — pick from the list is random!
+  const feedMsgs = ['yum yum, thank you! 🍓', 'mmm delicious ✧', 'more please? 🥹'];
+  const petMsgs  = ['loves pets ♡', 'purrs happily ✧', 'nuzzles your hand 🤍'];
+  const playMsgs = ['wheee that was fun!! 🧶', 'again, again!! ✧', 'best day ever 🎀'];
+  const sadMsgs  = ["...i'm a little hungry", "...feeling a bit lonely", "...missed you"];
+
+  // // TIP: how quickly the bars drop over time. Bigger number = pet
+  // // gets hungry/sad SLOWER. This is in milliseconds (15000 = 15 sec).
+  const DECAY_TICK_MS = 15000;
+  const DECAY_AMOUNT = 1;
+
+  // // TIP: how many total feed/pet/play actions it takes to reach
+  // // each stage. Add more stages by following the same pattern!
+  const LEVELS = [
+    { min: 0,  label: 'baby ✧ lvl 1' },
+    { min: 15, label: 'young ✧ lvl 2' },
+    { min: 40, label: 'grown ✧ lvl 3' },
+    { min: 80, label: 'celestial ✧ lvl 4 🕊' }
+  ];
+
+  const STORAGE_KEY = 'nanaqmiMochi';
+  let saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+  let hunger    = saved ? saved.hunger : 70;
+  let happy     = saved ? saved.happy : 70;
+  let name      = saved && saved.name ? saved.name : 'mochi';
+  let careCount = saved && saved.careCount ? saved.careCount : 0;
+  const lastSeen = saved && saved.lastUpdate ? saved.lastUpdate : Date.now();
+
+  // simulate hunger/happiness dropping while she was away, so the
+  // pet feels alive even if you don't leave the tab open all day
+  // (capped at 6 hours' worth so a long absence doesn't zero her out)
+  const minutesAway = Math.min((Date.now() - lastSeen) / 60000, 360);
+  const offlineDrop = Math.floor(minutesAway / 5);
+  hunger = clamp(hunger - offlineDrop);
+  happy  = clamp(happy - offlineDrop);
 
   function clamp(v) { return Math.max(0, Math.min(100, v)); }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+  function currentLevel() {
+    let lvl = LEVELS[0];
+    for (const l of LEVELS) { if (careCount >= l.min) lvl = l; }
+    return lvl;
+  }
 
   function render() {
     hungerBar.style.width = hunger + '%';
     happyBar.style.width = happy + '%';
+    nameDisplay.textContent = name;
+    levelBadge.textContent = currentLevel().label;
 
-    if (happy < 30 || hunger < 30) {
+    if (happy < 20 || hunger < 20) {
       mouth.setAttribute('d', 'M40 70 Q48 62 56 70'); // sad mouth
+      eyeL.setAttribute('r', '1.5'); eyeR.setAttribute('r', '1.5'); // sleepy/upset eyes
     } else {
       mouth.setAttribute('d', 'M40 66 Q48 72 56 66'); // happy mouth
+      eyeL.setAttribute('r', '4'); eyeR.setAttribute('r', '4');
     }
-    localStorage.setItem('nanaqmiMochi', JSON.stringify({ hunger, happy }));
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      hunger, happy, name, careCount, lastUpdate: Date.now()
+    }));
   }
 
-  function say(msg) {
-    speech.textContent = msg;
-  }
+  function say(msg) { speech.textContent = msg; }
 
   function bounce() {
     mochiSvg.style.transform = 'scale(1.08)';
@@ -1353,32 +1557,51 @@
 
   document.getElementById('feedBtn').addEventListener('click', () => {
     hunger = clamp(hunger + 20);
+    careCount++;
     bounce();
-    say('yum yum, thank you! 🍓');
+    say(pick(feedMsgs));
     render();
   });
 
   document.getElementById('petBtn').addEventListener('click', () => {
     happy = clamp(happy + 10);
+    careCount++;
     bounce();
-    say('mochi loves pets ♡');
+    say(name + ' ' + pick(petMsgs));
     render();
   });
 
   document.getElementById('playBtn').addEventListener('click', () => {
     happy = clamp(happy + 15);
     hunger = clamp(hunger - 5);
+    careCount++;
     bounce();
-    say('wheee that was fun!! 🧶');
+    say(pick(playMsgs));
     render();
   });
 
-  // slow natural decay so the pet feels alive across visits
+  // pet naming — she'll remember whatever name you give her
+  renameBtn.addEventListener('click', () => {
+    const newName = nameInput.value.trim();
+    if (newName) {
+      name = newName.slice(0, 16);
+      nameInput.value = '';
+      bounce();
+      say('i am ' + name + ' now! ✧');
+      render();
+    }
+  });
+  nameInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') renameBtn.click();
+  });
+
+  // slow natural decay so the pet feels alive while the tab is open
   setInterval(() => {
-    hunger = clamp(hunger - 1);
-    happy = clamp(happy - 1);
+    hunger = clamp(hunger - DECAY_AMOUNT);
+    happy = clamp(happy - DECAY_AMOUNT);
+    if ((hunger < 25 || happy < 25) && Math.random() < 0.4) say(pick(sadMsgs));
     render();
-  }, 15000);
+  }, DECAY_TICK_MS);
 
   render();
 })();
