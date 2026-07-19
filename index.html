@@ -593,6 +593,93 @@
   }
   .gallery figcaption { font-size: 12px; margin-top: 6px; color: var(--silver-2); font-style: italic; }
 
+  .gallery img { cursor: pointer; transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }
+  .gallery img:hover { transform: scale(1.035); box-shadow: 0 0 16px rgba(200,210,255,.55); }
+  .gallery img:active { transform: scale(.98); }
+
+  /* ================================================================
+     ART LIGHTBOX — the fullscreen click-through photo viewer.
+     ================================================================
+     // TIP: you don't need to edit anything below to use it — every
+     // image inside .gallery is automatically wired into it. If you
+     // ever add a brand-new gallery elsewhere on the page and want
+     // it included too, just give its <img> tags the class "gallery"
+     // as an ancestor, same as the art section.
+  ================================================================ */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(12,12,16,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .35s ease;
+  }
+  .lightbox.active { opacity: 1; pointer-events: auto; }
+  .lightbox-stage {
+    position: relative;
+    width: min(92vw, 900px);
+    height: 84vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+  .lightbox-img {
+    max-width: 100%; max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06);
+    background: rgba(20,20,24,.4);
+    opacity: 1; transform: scale(1) translateX(0);
+    transition: opacity .28s ease, transform .28s ease;
+    user-select: none; -webkit-user-drag: none;
+    will-change: opacity, transform;
+  }
+  .lightbox-img.is-switching { opacity: 0; }
+  .lightbox-close, .lightbox-nav {
+    position: absolute;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.35);
+    color: #f2f2f5;
+    font-size: 18px; line-height: 1;
+    cursor: pointer;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+    z-index: 2;
+  }
+  .lightbox-close:hover, .lightbox-nav:hover {
+    background: rgba(255,255,255,.18);
+    box-shadow: 0 0 14px rgba(255,255,255,.5);
+  }
+  .lightbox-close:active, .lightbox-nav:active { transform: scale(.92); }
+  .lightbox-close { top: -46px; right: 0; }
+  .lightbox-prev { left: -54px; top: 50%; transform: translateY(-50%); }
+  .lightbox-next { right: -54px; top: 50%; transform: translateY(-50%); }
+  .lightbox-counter {
+    position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+    font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px;
+    color: rgba(255,255,255,.75); white-space: nowrap;
+  }
+  .lightbox-caption {
+    position: absolute; top: -46px; left: 0; right: 60px;
+    font-family: 'IM Fell English', serif; font-style: italic; font-size: 13px;
+    color: rgba(255,255,255,.8);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .lightbox-stage { width: 94vw; height: 74vh; }
+    .lightbox-close { top: -42px; right: 0; width: 38px; height: 38px; font-size: 16px; }
+    .lightbox-prev, .lightbox-next {
+      top: auto; bottom: -48px; transform: none;
+      width: 38px; height: 38px; font-size: 16px;
+    }
+    .lightbox-prev { left: 0; }
+    .lightbox-next { right: 0; }
+    .lightbox-counter { bottom: -48px; }
+    .lightbox-caption { top: -40px; right: 0; text-align: center; }
+  }
+
   .webring {
     display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px;
   }
@@ -1039,8 +1126,43 @@
              // Photos load from the "fav_pic" folder — drop new
              // images there first. -->
         <div class="gallery">
+          <!-- // TIP: these seven are the "My_art" pieces — they're
+               // deliberately listed first, in numeric order (1→7),
+               // so they always show up at the top of the gallery.
+               // Edit only the figcaption text if you want nicer
+               // titles; the src="fav_pic/My_art/#.jpg" paths should
+               // stay exactly matched to your uploaded file names. -->
           <figure>
-            <img src="fav_pic/animegirl.png" alt="anime girl fanart" style="width:100%; height:130px; object-fit:cover; border-radius:6px;">
+            <img src="fav_pic/My_art/1.jpg" alt="original artwork 1" loading="lazy">
+            <figcaption>sketch I</figcaption>
+          </figure>
+          <figure>
+            <img src="fav_pic/My_art/2.jpg" alt="original artwork 2" loading="lazy">
+            <figcaption>sketch II</figcaption>
+          </figure>
+          <figure>
+            <img src="fav_pic/My_art/3.jpg" alt="original artwork 3" loading="lazy">
+            <figcaption>sketch III</figcaption>
+          </figure>
+          <figure>
+            <img src="fav_pic/My_art/4.jpg" alt="original artwork 4" loading="lazy">
+            <figcaption>sketch IV</figcaption>
+          </figure>
+          <figure>
+            <img src="fav_pic/My_art/5.jpg" alt="original artwork 5" loading="lazy">
+            <figcaption>sketch V</figcaption>
+          </figure>
+          <figure>
+            <img src="fav_pic/My_art/6.jpg" alt="original artwork 6" loading="lazy">
+            <figcaption>sketch VI</figcaption>
+          </figure>
+          <figure>
+            <img src="fav_pic/My_art/7.jpg" alt="original artwork 7" loading="lazy">
+            <figcaption>sketch VII</figcaption>
+          </figure>
+
+          <figure>
+            <img src="fav_pic/animegirl.png" alt="anime girl fanart" style="width:100%; height:130px; object-fit:cover; border-radius:6px;" loading="lazy">
             <figcaption>Anime postavička ♡</figcaption>
           </figure>
           <figure>
@@ -1067,6 +1189,22 @@
           
         </div>
       </section>
+
+      <!-- ================================================================
+           ART LIGHTBOX MODAL — do not delete. This one div powers the
+           click-to-enlarge / swipe-through viewer for every image in
+           the Galéria Umenia above. Nothing here needs editing.
+      ================================================================ -->
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-stage" id="lightboxStage">
+          <span class="lightbox-caption" id="lightboxCaption"></span>
+          <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+          <img class="lightbox-img" id="lightboxImg" src="" alt="">
+          <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
+          <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&#10095;</button>
+          <span class="lightbox-counter" id="lightboxCounter"></span>
+        </div>
+      </div>
 
       <section id="games">
         <h2 class="section-title" style="margin-bottom:10px;"> ✧✧✧ Minihry ✧✧✧ </h2>
@@ -1783,6 +1921,156 @@ setInterval(() => {
 
   audio.addEventListener('play', updateIcon);
   audio.addEventListener('pause', updateIcon);
+})();
+</script>
+
+<!-- ===== art gallery lightbox: click a photo, then swipe/arrow between them ===== -->
+<script>
+(function() {
+  const items      = Array.from(document.querySelectorAll('.gallery img'));
+  const lightbox   = document.getElementById('lightbox');
+  const stage      = document.getElementById('lightboxStage');
+  const imgEl      = document.getElementById('lightboxImg');
+  const captionEl  = document.getElementById('lightboxCaption');
+  const counterEl  = document.getElementById('lightboxCounter');
+  const closeBtn   = document.getElementById('lightboxClose');
+  const prevBtn    = document.getElementById('lightboxPrev');
+  const nextBtn    = document.getElementById('lightboxNext');
+  if (!lightbox || items.length === 0) return;
+
+  let current = 0;
+  let isAnimating = false;
+  let lastFocused = null;
+
+  function captionFor(i) {
+    const fig = items[i].closest('figure');
+    const cap = fig ? fig.querySelector('figcaption') : null;
+    return cap ? cap.textContent : (items[i].alt || '');
+  }
+
+  // preload the neighbour so next/prev never shows a blank flash
+  function preload(i) {
+    const idx = (i + items.length) % items.length;
+    const pic = new Image();
+    pic.src = items[idx].src;
+  }
+
+  function render(direction) {
+    const src = items[current].src;
+    const alt = items[current].alt || '';
+
+    imgEl.classList.add('is-switching');
+    imgEl.style.transform = direction === 'next' ? 'translateX(-18px) scale(.97)'
+                            : direction === 'prev' ? 'translateX(18px) scale(.97)'
+                            : 'scale(.97)';
+
+    window.setTimeout(function() {
+      imgEl.src = src;
+      imgEl.alt = alt;
+      captionEl.textContent = captionFor(current);
+      counterEl.textContent = (current + 1) + ' / ' + items.length;
+      imgEl.style.transform = direction === 'next' ? 'translateX(18px) scale(.97)'
+                              : direction === 'prev' ? 'translateX(-18px) scale(.97)'
+                              : 'scale(.97)';
+      // double rAF forces the browser to register the offset position
+      // before we animate back to center, so the transition actually plays
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          imgEl.classList.remove('is-switching');
+          imgEl.style.transform = 'translateX(0) scale(1)';
+        });
+      });
+      isAnimating = false;
+      preload(current + 1);
+      preload(current - 1);
+    }, 230);
+  }
+
+  function goTo(index, direction) {
+    if (isAnimating) return;
+    isAnimating = true;
+    current = (index + items.length) % items.length;
+    render(direction);
+  }
+
+  function open(index) {
+    lastFocused = document.activeElement;
+    current = index;
+    imgEl.src = items[current].src;
+    imgEl.alt = items[current].alt || '';
+    captionEl.textContent = captionFor(current);
+    counterEl.textContent = (current + 1) + ' / ' + items.length;
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    preload(current + 1);
+    preload(current - 1);
+  }
+
+  function close() {
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  items.forEach(function(img, i) {
+    img.addEventListener('click', function() { open(i); });
+  });
+
+  closeBtn.addEventListener('click', close);
+  nextBtn.addEventListener('click', function() { goTo(current + 1, 'next'); });
+  prevBtn.addEventListener('click', function() { goTo(current - 1, 'prev'); });
+
+  // click on the dark backdrop (not the image/buttons) also closes it
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') goTo(current + 1, 'next');
+    if (e.key === 'ArrowLeft') goTo(current - 1, 'prev');
+  });
+
+  // smooth swipe support for phones/tablets
+  let touchStartX = 0, touchStartY = 0, touchDeltaX = 0, touchDeltaY = 0, dragging = false;
+
+  stage.addEventListener('touchstart', function(e) {
+    if (e.target === imgEl) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchDeltaX = 0;
+      touchDeltaY = 0;
+      dragging = true;
+      imgEl.style.transition = 'none';
+    }
+  }, { passive: true });
+
+  stage.addEventListener('touchmove', function(e) {
+    if (!dragging) return;
+    touchDeltaX = e.touches[0].clientX - touchStartX;
+    touchDeltaY = e.touches[0].clientY - touchStartY;
+    // only fight the finger horizontally; let vertical scroll/dismiss alone
+    if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY)) {
+      imgEl.style.transform = 'translateX(' + touchDeltaX + 'px) scale(.99)';
+    }
+  }, { passive: true });
+
+  stage.addEventListener('touchend', function() {
+    if (!dragging) return;
+    dragging = false;
+    imgEl.style.transition = '';
+    const threshold = 60;
+    if (Math.abs(touchDeltaX) > Math.abs(touchDeltaY) && Math.abs(touchDeltaX) > threshold) {
+      if (touchDeltaX < 0) goTo(current + 1, 'next');
+      else goTo(current - 1, 'prev');
+    } else {
+      imgEl.style.transform = 'translateX(0) scale(1)';
+    }
+  });
 })();
 </script>
 
