@@ -177,7 +177,10 @@
     background: rgba(255,255,255,.85);
     backdrop-filter: blur(6px);
     color: var(--silver-3);
-    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
     line-height: 1;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(255,255,255,.8);
@@ -198,7 +201,7 @@
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-  /* ---- falling feathers & snow ---- */
+  /* ---- falling snow & hearts ---- */
   .feather-fall{
     position:fixed;
     top:-40px;
@@ -422,13 +425,48 @@
     margin: 16px 0 8px;
   }
 
+  /* ================================================================
+     ICON SYSTEM — every <svg class="icon"> on the page pulls its
+     shape from the sprite sheet near the top of <body>.
+     ================================================================ */
+  .icon {
+    width: 1em; height: 1em;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -0.15em;
+  }
+  .icon-lg { width: 15px; height: 15px; }
+  .icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.75);
+    border: 1px solid var(--silver-1);
+    color: var(--goth-black-soft);
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: box-shadow .25s ease, background .25s ease;
+  }
+  .navbtn:hover .icon-badge, .buy-btn:hover .icon-badge {
+    box-shadow: 0 0 10px rgba(255,255,255,.9);
+    background: #fff;
+  }
+
   .navbtn {
-    display: block;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-align: left;
     background: rgba(255,255,255,.55);
     border: 1px solid var(--silver-1);
     border-radius: 4px;
-    padding: 7px 4px;
+    padding: 6px 10px;
     margin: 6px 0;
     font-size: 13px;
     letter-spacing: .5px;
@@ -436,6 +474,13 @@
     transition: .3s;
   }
   .navbtn:hover { background: #fff; box-shadow: 0 0 12px rgba(255,255,255,.9); text-decoration: none; }
+  .navbtn.navbtn-center { justify-content: center; }
+
+  .webring a, .buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
 
   .status-box {
     margin-top: 16px;
@@ -446,6 +491,76 @@
     border-radius: 6px;
     line-height: 1.7;
     font-style: italic;
+  }
+
+  /* ---- sidebar decorative gifs ---- */
+  .sidebar-gifs {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .sidebar-gifs img {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--silver-1);
+    background: rgba(255,255,255,.5);
+    box-shadow: 0 0 10px rgba(255,255,255,.7);
+  }
+  .sidebar-gifs .gif-betty { width: 128px; }
+  .sidebar-gifs .gif-mistake { width: 110px; }
+
+  /* ---- decorative content-width banner gifs (between sections) ---- */
+  .banner-gif {
+    display: block;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto 14px;
+    border-radius: 6px;
+  }
+  .banner-gif-wide {
+    display: block;
+    max-width: 640px;
+    width: 100%;
+    margin: 22px auto;
+    border-radius: 8px;
+    border: 1px solid var(--silver-1);
+    box-shadow: 0 0 16px rgba(255,255,255,.75);
+  }
+  .visitor-gif {
+    display: block;
+    width: 84px;
+    margin: 6px auto 0;
+    border-radius: 50%;
+    border: 1px solid var(--silver-1);
+  }
+
+  /* ---- under-construction footer strip ---- */
+  .construction-strip {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    padding: 18px 10px 6px;
+    border-top: 1px solid var(--silver-1);
+    margin-top: 10px;
+  }
+  .construction-strip figure {
+    margin: 0;
+    text-align: center;
+  }
+  .construction-strip img {
+    display: block;
+    border-radius: 6px;
+  }
+  .construction-strip figcaption {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--silver-2);
+    margin-top: 6px;
+    letter-spacing: .5px;
   }
 
   main.content { padding: 22px 26px; }
@@ -521,6 +636,9 @@
     color: var(--silver-3);
     width: 26px; height: 26px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 15px;
     line-height: 1;
     cursor: pointer;
@@ -772,6 +890,9 @@
   }
   .pet-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
   .pet-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background: rgba(255,255,255,.85);
     border: 1px solid var(--silver-1);
     border-radius: 6px;
@@ -781,6 +902,7 @@
     font-family: 'Cormorant Garamond', serif;
     color: var(--silver-3);
   }
+  .pet-actions button .icon { width: 14px; height: 14px; }
   .pet-actions button:hover { box-shadow: 0 0 12px rgba(255,255,255,.9); }
   #mochiSpeech {
     font-size: 12px;
@@ -853,7 +975,10 @@
 
 <!-- ===== background music: moonlight.mp3 ===== -->
 <audio id="bgMusic" src="moonlight.mp3" loop preload="auto"></audio>
-<button id="musicToggle" aria-label="play/pause music" title="play/pause music">🔈</button>
+<button id="musicToggle" aria-label="play/pause music" title="play/pause music">
+  <svg class="icon" id="musicIconOn"><use href="#icon-speaker-on"></use></svg>
+  <svg class="icon" id="musicIconOff" style="display:none;"><use href="#icon-speaker-off"></use></svg>
+</button>
 
 <!-- hidden filter defs: gives boxes/art a slightly hand-traced, imperfect wobble -->
 <svg width="0" height="0" style="position:absolute;">
@@ -861,6 +986,110 @@
     <feTurbulence type="fractalNoise" baseFrequency="0.012 0.025" numOctaves="2" seed="7" result="noise"/>
     <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.2"/>
   </filter>
+</svg>
+
+<!-- ================================================================
+     SVG ICON SPRITE — one set of hand-drawn line icons, reused all
+     over the page via <svg class="icon"><use href="#icon-NAME"/></svg>
+     ================================================================
+     // TIP: this block never shows up on the page by itself (it's
+     // hidden). It's just a shelf of icon "stencils". To use one
+     // anywhere, copy this snippet and swap NAME:
+     //   <svg class="icon"><use href="#icon-NAME"></use></svg>
+     // Don't delete or rename symbols that are already used below,
+     // or their icons will disappear.
+================================================================ -->
+<svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+  <defs>
+    <symbol id="icon-feather" viewBox="0 0 24 24">
+      <path d="M12 3c5 1 6 6 6 10-3 0-8-1-9-6-.4-2 .3-3.6 3-4z"/>
+      <path d="M18 13c0 4-3 7-7 8" />
+      <path d="M12 8l-5 5M13.5 10.5L9 15M15 12.5L11 16.5"/>
+    </symbol>
+    <symbol id="icon-pendant" viewBox="0 0 24 24">
+      <circle cx="12" cy="4.5" r="1.6"/>
+      <path d="M12 6.1V9"/>
+      <path d="M12 9l6 6-6 8-6-8z"/>
+      <path d="M6 15h12"/>
+    </symbol>
+    <symbol id="icon-hanger" viewBox="0 0 24 24">
+      <path d="M9.5 6a2.5 2.5 0 115 0"/>
+      <path d="M12 6v3"/>
+      <path d="M12 9l9 7H3z"/>
+      <path d="M3.5 17.5h17"/>
+    </symbol>
+    <symbol id="icon-frame" viewBox="0 0 24 24">
+      <rect x="3.5" y="4" width="17" height="16" rx="1"/>
+      <circle cx="8.2" cy="9.5" r="1.4"/>
+      <path d="M4 17l5-5 3.5 3.5L17 10l3.5 5.5"/>
+    </symbol>
+    <symbol id="icon-dice" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="3"/>
+      <circle cx="8.3" cy="8.3" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="15.7" cy="15.7" r="1.2" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-note" viewBox="0 0 24 24">
+      <ellipse cx="7.5" cy="18" rx="2.6" ry="2" transform="rotate(-18 7.5 18)" fill="currentColor" stroke="none"/>
+      <path d="M10 18V5.5l8-1.8V11"/>
+      <ellipse cx="15.5" cy="12.8" rx="2.6" ry="2" transform="rotate(-18 15.5 12.8)" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-hearts" viewBox="0 0 24 24">
+      <path d="M9.5 6.5c-1.6-1.6-4.2-.6-4.4 1.5-.2 2 1.6 3.5 4.4 6 2.8-2.5 4.6-4 4.4-6-.2-2.1-2.8-3.1-4.4-1.5z" opacity=".55"/>
+      <path d="M15 9.5c-1.6-1.6-4.2-.6-4.4 1.5-.2 2 1.6 3.5 4.4 6 2.8-2.5 4.6-4 4.4-6-.2-2.1-2.8-3.1-4.4-1.5z"/>
+    </symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24">
+      <path d="M12 6.5c-2-1.3-4.6-1.6-7.5-1V17c2.9-.6 5.5-.3 7.5 1"/>
+      <path d="M12 6.5c2-1.3 4.6-1.6 7.5-1V17c-2.9-.6-5.5-.3-7.5 1"/>
+      <path d="M12 6.5V18"/>
+    </symbol>
+    <symbol id="icon-paw" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="15.5" rx="4.6" ry="3.6"/>
+      <ellipse cx="6.3" cy="9.5" rx="1.7" ry="2.2"/>
+      <ellipse cx="10.6" cy="6.8" rx="1.7" ry="2.2"/>
+      <ellipse cx="15.4" cy="6.8" rx="1.7" ry="2.2"/>
+      <ellipse cx="19.7" cy="9.5" rx="1.7" ry="2.2"/>
+    </symbol>
+    <symbol id="icon-berry" viewBox="0 0 24 24">
+      <path d="M9.5 5.5c1-1 3-1.4 4 0"/>
+      <circle cx="12" cy="14" r="7"/>
+      <path d="M8.5 12c1.5-1.5 5.5-1.5 7 0M8.5 15.5c1.5-1.5 5.5-1.5 7 0" opacity=".7"/>
+    </symbol>
+    <symbol id="icon-hand" viewBox="0 0 24 24">
+      <path d="M7 12V6a1.4 1.4 0 012.8 0v5"/>
+      <path d="M9.8 11V4.6a1.4 1.4 0 012.8 0V11"/>
+      <path d="M12.6 11V5.6a1.4 1.4 0 012.8 0V11"/>
+      <path d="M15.4 11.5V7.6a1.4 1.4 0 012.8 0v6.9c0 3.6-2.3 6.5-6 6.5s-5.7-1.9-6.9-4.4L4 12.8a1.5 1.5 0 012.6-1.5L7 12"/>
+    </symbol>
+    <symbol id="icon-yarn" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="7.5"/>
+      <path d="M6 8.5c3.5 1.8 8 1.8 12 0M5 12.5c4 1.6 10 1.6 14 0M6.3 16.5c3.3 1.4 7.8 1.4 11.4 0" opacity=".7"/>
+      <path d="M17 17c1.6.6 2.7 1.7 2.7 2.7" />
+    </symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24">
+      <rect x="3.5" y="6.5" width="17" height="13" rx="2.5"/>
+      <path d="M8 6.5l1.4-2h5.2l1.4 2"/>
+      <circle cx="12" cy="13" r="3.4"/>
+      <circle cx="17.3" cy="9.5" r=".7" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-speaker-on" viewBox="0 0 24 24">
+      <path d="M4 10v4h3.5L12 17.5v-11L7.5 10z"/>
+      <path d="M16 9.5c1 .9 1 4.1 0 5M18.3 7.3c2 2 2 7.4 0 9.4" opacity=".85"/>
+    </symbol>
+    <symbol id="icon-speaker-off" viewBox="0 0 24 24">
+      <path d="M4 10v4h3.5L12 17.5v-11L7.5 10z"/>
+      <path d="M16 10l4.5 4M20.5 10l-4.5 4" opacity=".85"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+      <path d="M15 5l-7 7 7 7"/>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <path d="M9 5l7 7-7 7"/>
+    </symbol>
+  </defs>
 </svg>
 
 <!-- angelcore decorative stickers, hand-drawn in SVG (no external/copyrighted art) -->
@@ -951,22 +1180,22 @@
            // The text between > and < is what shows on the button.
            // If you add a brand new section, give it an id="something"
            // and add a matching button here with href="#something". -->
-      <a class="navbtn" href="#about">About me</a>
-      <a class="navbtn" href="#mypet" ">Tamagotchi</a>
-      <a class="navbtn" href="#shop" style="background:#f7f7f7; font-weight:bold;" >Necklace Shop</a>
-      <a class="navbtn" href="#vinted" style="background:#f7f7f7; font-weight:bold;>vinted closet</a>
-      <a class="navbtn" href="#gallery">Art Gallery</a>
-      <a class="navbtn" href="#games">Fun minigames</a>
-      <a class="navbtn" href="#taste">Music & Books</a>
-      <a class="navbtn" href="#friends">Friends</a>
-      <a class="navbtn" href="#guestbook">Guestbook</a>
+      <a class="navbtn" href="#about"><span class="icon-badge"><svg class="icon"><use href="#icon-feather"></use></svg></span>About me</a>
+      <a class="navbtn" href="#mypet"><span class="icon-badge"><svg class="icon"><use href="#icon-paw"></use></svg></span>Tamagotchi</a>
+      <a class="navbtn" href="#shop" style="background:#f7f7f7; font-weight:bold;"><span class="icon-badge"><svg class="icon"><use href="#icon-pendant"></use></svg></span>Necklace Shop</a>
+      <a class="navbtn" href="#vinted" style="background:#f7f7f7; font-weight:bold;"><span class="icon-badge"><svg class="icon"><use href="#icon-hanger"></use></svg></span>vinted closet</a>
+      <a class="navbtn" href="#gallery"><span class="icon-badge"><svg class="icon"><use href="#icon-frame"></use></svg></span>Art Gallery</a>
+      <a class="navbtn" href="#games"><span class="icon-badge"><svg class="icon"><use href="#icon-dice"></use></svg></span>Fun minigames</a>
+      <a class="navbtn" href="#taste"><span class="icon-badge"><svg class="icon"><use href="#icon-note"></use></svg></span>Music & Books</a>
+      <a class="navbtn" href="#friends"><span class="icon-badge"><svg class="icon"><use href="#icon-hearts"></use></svg></span>Friends</a>
+      <a class="navbtn" href="#guestbook"><span class="icon-badge"><svg class="icon"><use href="#icon-book"></use></svg></span>Guestbook</a>
 
       <div class="divider">Social Media:</div>
       <!-- // TIP: swap these 3 links for your own social/shop pages.
            // Just change the web address inside the quotes after href=. -->
-      <a class="navbtn" href="https://www.instagram.com/nanaqmi/" target="_blank">insta (personal)</a>
-      <a class="navbtn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">insta (shop/art)</a>
-      <a class="navbtn" href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">vinted closet</a>
+      <a class="navbtn" href="https://www.instagram.com/nanaqmi/" target="_blank"><span class="icon-badge"><svg class="icon"><use href="#icon-camera"></use></svg></span>insta (personal)</a>
+      <a class="navbtn" href="https://www.instagram.com/nanaqmi.art/" target="_blank"><span class="icon-badge"><svg class="icon"><use href="#icon-camera"></use></svg></span>insta (shop/art)</a>
+      <a class="navbtn" href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank"><span class="icon-badge"><svg class="icon"><use href="#icon-hanger"></use></svg></span>vinted closet</a>
 
       <div class="status-box">
         <!-- // TIP: this little box is your "currently..." status.
@@ -977,6 +1206,14 @@
         currently reading: Metamorphosis (Kafka) <br>
         currently listening: <em>see jukebox below</em> <br>
         <span class="blink">Buy My Products Now !!!</span>
+      </div>
+
+      <!-- // TIP: just two decorative gifs since the sidebar is narrow —
+           // swap the file names for any others in your "gifs" folder,
+           // or delete a whole <img> line to remove one. -->
+      <div class="sidebar-gifs">
+        <img class="gif-betty" src="gifs/betty.gif" alt="pixel sidebar decoration">
+        <img class="gif-mistake" src="gifs/angelbymistake.gif" alt="angel by mistake sticker">
       </div>
     </nav>
 
@@ -998,9 +1235,9 @@
       <section class="about-box blessing-box" id="blessing" style="margin-bottom:16px;">
         <span class="bl-label">blessing of the day</span>
         <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
-          <button class="blessing-arrow" id="blessingPrev" aria-label="previous blessing">‹</button>
+          <button class="blessing-arrow" id="blessingPrev" aria-label="previous blessing"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
           <p id="blessingText">"may your path be lit by quiet stars."</p>
-          <button class="blessing-arrow" id="blessingNext" aria-label="next blessing">›</button>
+          <button class="blessing-arrow" id="blessingNext" aria-label="next blessing"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
         </div>
       </section>
 
@@ -1049,25 +1286,25 @@
             <img src="nah/nah_2.png" alt="handmade necklace" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">$12</div>
             <div>necklace ✧ 1</div>
-            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank"><svg class="icon"><use href="#icon-camera"></use></svg>DM to order</a>
           </div>
           <div class="shop-item">
             <img src="nah/nah_3.png" alt="handmade necklace" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">$15</div>
             <div>necklace ✧ 2</div>
-            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank"><svg class="icon"><use href="#icon-camera"></use></svg>DM to order</a>
           </div>
           <div class="shop-item">
             <img src="nah/nah_4.png" alt="handmade necklace" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">$18</div>
             <div>necklace ✧ 3</div>
-            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank"><svg class="icon"><use href="#icon-camera"></use></svg>DM to order</a>
           </div>
           <div class="shop-item">
             <img src="nah/nah_5.png" alt="handmade necklace" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">$16</div>
             <div>necklace ✧ 4</div>
-            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank">DM to order</a>
+            <a class="buy-btn" href="https://www.instagram.com/nanaqmi.art/" target="_blank"><svg class="icon"><use href="#icon-camera"></use></svg>DM to order</a>
           </div>
         </div>
       </section>
@@ -1087,29 +1324,29 @@
             <img src="obl/obl_1.png" alt="Vinted item" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">€8</div>
             <div>item name here</div>
-            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+            <a class="buy-btn" href="#" target="_blank"><svg class="icon"><use href="#icon-hanger"></use></svg>view on Vinted</a>
           </div>
           <div class="shop-item vinted-item">
             <img src="obl/obl_2.png" alt="Vinted item" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">€10</div>
             <div>item name here</div>
-            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+            <a class="buy-btn" href="#" target="_blank"><svg class="icon"><use href="#icon-hanger"></use></svg>view on Vinted</a>
           </div>
           <div class="shop-item vinted-item">
             <img src="obl/obl_3.webp" alt="Vinted item" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">€6</div>
             <div>item name here</div>
-            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+            <a class="buy-btn" href="#" target="_blank"><svg class="icon"><use href="#icon-hanger"></use></svg>view on Vinted</a>
           </div>
           <div class="shop-item vinted-item">
             <img src="obl/olb_4.png" alt="Vinted item" style="width:100%; height:150px; object-fit:cover; border-radius:5px; border:1px solid #ececec;">
             <div class="price">€12</div>
             <div>item name here</div>
-            <a class="buy-btn" href="#" target="_blank">view on Vinted</a>
+            <a class="buy-btn" href="#" target="_blank"><svg class="icon"><use href="#icon-hanger"></use></svg>view on Vinted</a>
           </div>
         </div>
         <p style="font-size:11px; text-align:center; margin-top:10px;">
-          <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">see all items on Vinted →</a>
+          <a href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank" style="display:inline-flex;align-items:center;gap:5px;">see all items on Vinted <svg class="icon" style="width:.85em;height:.85em;"><use href="#icon-chevron-right"></use></svg></a>
         </p>
       </section>
 
@@ -1198,10 +1435,10 @@
       <div class="lightbox" id="lightbox" aria-hidden="true">
         <div class="lightbox-stage" id="lightboxStage">
           <span class="lightbox-caption" id="lightboxCaption"></span>
-          <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+          <button class="lightbox-close" id="lightboxClose" aria-label="Close"><svg class="icon"><use href="#icon-close"></use></svg></button>
           <img class="lightbox-img" id="lightboxImg" src="" alt="">
-          <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
-          <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&#10095;</button>
+          <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
+          <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
           <span class="lightbox-counter" id="lightboxCounter"></span>
         </div>
       </div>
@@ -1260,6 +1497,7 @@
       </section>
 
       <section class="friends-box" id="friends">
+        <img class="banner-gif" src="gifs/princess.gif" alt="decorative divider">
         <h2 class="section-title">friends & webring</h2>
         <p>go check out these lovely people too!</p>
         <!-- // TIP: change "#" to a friend's real website link, and
@@ -1298,6 +1536,8 @@
            // setting, make sure the site's real address (wherever
            // you end up hosting it, e.g. a GitHub Pages link) is on
            // that list, or the box may refuse to load. -->
+      <img class="banner-gif-wide" src="gifs/angelbanner.gif" alt="angel banner decoration">
+
       <section class="guestbook-box" id="guestbook">
         <h2 class="section-title">✧✧✧ My Guestbook ✧✧✧</h2>
         <p>✧ Leave a little note before you go! ✧</p>
@@ -1311,6 +1551,7 @@
            // it doesn't count for real — feel free to bump the number
            // up any time you like! -->
       <p style="text-align:center;">
+        <img class="visitor-gif" src="gifs/myvisit.gif" alt="my visit sticker">
         <span class="counter">000111</span><br>
         <small>✧ You are visitor number 111! ✧✧✧
                 ✧ You are extra lucky today ! ✧✧✧</small>
@@ -1372,9 +1613,9 @@
             </div>
             <div id="mochiSpeech">...zzz...</div>
             <div class="pet-actions">
-              <button id="feedBtn">🍓 Nakŕmiť</button>
-              <button id="petBtn">✋ Pohladkať</button>
-              <button id="playBtn">🧶 Hrať sa</button>
+              <button id="feedBtn"><svg class="icon"><use href="#icon-berry"></use></svg>Nakŕmiť</button>
+              <button id="petBtn"><svg class="icon"><use href="#icon-hand"></use></svg>Pohladkať</button>
+              <button id="playBtn"><svg class="icon"><use href="#icon-yarn"></use></svg>Hrať sa</button>
             </div>
           </div>
         </div>
@@ -1410,6 +1651,20 @@
       </section>
 
     </main>
+  </div>
+
+  <!-- // TIP: the classic "under construction" gifs — swap or remove
+       // either <figure> block if you finish a section and want to
+       // retire one. -->
+  <div class="construction-strip">
+    <figure>
+      <img src="gifs/underconstruction.gif" alt="under construction animation" width="80">
+      <figcaption>always building</figcaption>
+    </figure>
+    <figure>
+      <img src="gifs/under construction. anime.gif" alt="under construction anime animation" width="140">
+      <figcaption>pardon the dust</figcaption>
+    </figure>
   </div>
 
   <!-- // TIP: this is the very bottom credit line of the page. Update
@@ -1486,11 +1741,11 @@
 })();
 </script>
 
-<!-- ===== falling snow & feathers ===== -->
+<!-- ===== falling snow & hearts ===== -->
 <script>
 (function() {
-  // weighted so snowflakes dominate, with feathers & sparkles mixed in
-  const snowGlyphs = ['❄', '❅', '❆', '✦', '✧', '🪶'];
+  // weighted so snowflakes & hearts dominate, with sparkles mixed in
+  const snowGlyphs = ['❄', '❅', '❆', '✦', '✧', '♡', '♡', '♥'];
   const driftClasses = ['', 'drift-a', 'drift-b', 'drift-c'];
 
   function dropFeather() {
@@ -1895,7 +2150,15 @@ setInterval(() => {
   audio.volume = 0.5;
 
   function updateIcon() {
-    btn.textContent = audio.paused ? '🔈' : '🔊';
+    const onIcon = document.getElementById('musicIconOn');
+    const offIcon = document.getElementById('musicIconOff');
+    if (audio.paused) {
+      onIcon.style.display = 'none';
+      offIcon.style.display = '';
+    } else {
+      onIcon.style.display = '';
+      offIcon.style.display = 'none';
+    }
   }
 
   function tryStart() {
