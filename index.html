@@ -45,13 +45,19 @@
 -->
 
 <style>
-  /* // TIP: These are the fonts used on the page (Cinzel = the fancy
-     // titles, Cormorant Garamond = regular text). To use different
-     // fonts, browse https://fonts.google.com, click a font, copy
-     // its @import line, and replace this whole line with it — just
-     // remember to also update the font names further down in the
-     // CSS (search for 'Cinzel' and 'Cormorant Garamond'). */
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Press+Start+2P&display=swap');
+  /* // TIP: These are the fonts used on the page.
+     //   - UnifrakturCook = the blackletter/gothic font on the big
+     //     "nanaqmi" title in the banner
+     //   - Cinzel Decorative = the ornate gothic-elegant font used
+     //     for section headings
+     //   - Cormorant Garamond = the regular reading text
+     //   - IM Fell English = the antique italic font used for the
+     //     little quotes (verse under the banner, blessing of the day)
+     // To use different fonts, browse https://fonts.google.com, click
+     // a font, copy its @import line, and replace this whole line
+     // with it — just remember to also update the font names further
+     // down in the CSS (search for the font's name in quotes). */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=UnifrakturCook:wght@700&family=Press+Start+2P&display=swap');
 
   * { box-sizing: border-box; }
 
@@ -310,9 +316,12 @@
     text-align:center; z-index:20; width:90%;
   }
   .banner-content h1{
-    font-family:'Cinzel', serif;
-    font-size:40px;
-    letter-spacing:5px;
+    /* // TIP: this is your big page title's font — currently a
+       // blackletter/gothic style. Swap the font name (in quotes) for
+       // anything imported above if you want a different look. */
+    font-family:'UnifrakturCook', 'Cinzel', serif;
+    font-size:44px;
+    letter-spacing:1px;
     font-weight:700;
     color:#8b91a9;
     text-shadow: 0 0 12px white, 0 0 25px rgba(215,225,255,.8);
@@ -348,7 +357,8 @@
     margin-top:10px;
   }
   .banner-content p.verse{
-    font-size:12px;
+    font-size:13px;
+    font-family:'IM Fell English', serif;
     font-style: italic;
     color:#9aa0b3;
     margin:6px 0 0;
@@ -472,7 +482,7 @@
   }
 
   h2.section-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
     font-size: 15px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -483,14 +493,14 @@
   /* blessing of the day */
   .blessing-box{
     text-align:center;
-    font-family:'Cormorant Garamond', serif;
+    font-family:'IM Fell English', serif;
     font-style: italic;
-    font-size: 15px;
+    font-size: 16px;
     color:#7d84a0;
   }
   .blessing-box .bl-label{
     display:block;
-    font-family:'Cinzel', serif;
+    font-family:'Cinzel Decorative', 'Cinzel', serif;
     font-style: normal;
     font-size:10px;
     letter-spacing:3px;
@@ -498,6 +508,27 @@
     color: var(--silver-2);
     margin-bottom:6px;
   }
+  #blessingText{
+    transition: opacity .25s ease;
+    margin: 0;
+  }
+  /* // TIP: the ‹ › buttons that let visitors click through blessings.
+     // Change the colors/size here if you want them to stand out more
+     // or blend in more. */
+  .blessing-arrow{
+    background: rgba(255,255,255,.7);
+    border: 1px solid var(--silver-1);
+    color: var(--silver-3);
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: .3s;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .blessing-arrow:hover{ background:#fff; box-shadow: 0 0 10px rgba(255,255,255,.9); }
 
   /* shop */
   .shop-grid {
@@ -871,14 +902,19 @@
         who i'd like to meet: people who like to play games or handmake stuff, just like me ✧
       </section>
 
-      <!-- // TIP: the "blessing of the day" changes automatically each
-           // day of the month — it picks one line from a list. To edit
-           // the list of blessings, scroll way down to the script
-           // labeled "blessing of the day" near the bottom of the file
-           // and edit the sentences there. -->
+      <!-- // TIP: the "blessing of the day" starts on a line picked
+           // automatically based on today's date, but visitors can
+           // now click the ‹ › arrows to browse ALL of them. To add
+           // more blessings, scroll way down to the script labeled
+           // "blessing of the day" near the bottom of the file and
+           // add more lines to the list there — no limit on how many! -->
       <section class="about-box blessing-box" id="blessing" style="margin-bottom:16px;">
         <span class="bl-label">blessing of the day</span>
-        <p id="blessingText">"may your path be lit by quiet stars."</p>
+        <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+          <button class="blessing-arrow" id="blessingPrev" aria-label="previous blessing">‹</button>
+          <p id="blessingText">"may your path be lit by quiet stars."</p>
+          <button class="blessing-arrow" id="blessingNext" aria-label="next blessing">›</button>
+        </div>
       </section>
 
       <!-- // TIP: this is your main "about me" text. Rewrite this
@@ -1607,7 +1643,13 @@
 })();
 </script>
 
-<!-- ===== blessing of the day ===== -->
+<!-- ================================================================
+     BLESSING OF THE DAY SCRIPT
+     ================================================================
+     // TIP: to add a blessing, copy one whole line below (starting
+     // and ending with '"...",') and change the words. To remove one,
+     // delete its whole line. As many as you want — there's no limit!
+================================================================ -->
 <script>
 (function() {
   const blessings = [
@@ -1617,13 +1659,48 @@
     '"grace finds you exactly where you are."',
     '"rest in the light that never leaves you."',
     '"your heart is a cathedral — treat it gently."',
-    '"the moon keeps your secrets safe tonight."'
+    '"the moon keeps your secrets safe tonight."',
+    '"even shadows bend to let your light through."',
+    '"you were never meant to carry it all alone."',
+    '"soft hearts survive the coldest winters."',
+    '"the stars kept watch so you wouldn\'t have to."',
+    '"today asks only that you breathe, and that is enough."',
+    '"what haunts you also shapes you into something luminous."',
+    '"velvet dark holds you as gently as any dawn."',
+    '"you are the quiet after the storm, not the storm itself."',
+    '"even angels need somewhere soft to fall."',
+    '"let your softness be its own kind of armor."',
+    '"you carry a whole cathedral of feeling — wear it proudly."'
   ];
+
   const el = document.getElementById('blessingText');
-  if (el) {
-    const day = new Date().getDate();
-    el.textContent = blessings[day % blessings.length];
+  const prevBtn = document.getElementById('blessingPrev');
+  const nextBtn = document.getElementById('blessingNext');
+  if (!el) return;
+
+  // start on a blessing picked from today's date, so it still feels
+  // like a fresh "blessing of the day" on first load
+  const day = new Date().getDate();
+  let index = day % blessings.length;
+
+  function render() {
+    el.style.opacity = 0;
+    setTimeout(() => {
+      el.textContent = blessings[index];
+      el.style.opacity = 1;
+    }, 200);
   }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => {
+    index = (index - 1 + blessings.length) % blessings.length;
+    render();
+  });
+  if (nextBtn) nextBtn.addEventListener('click', () => {
+    index = (index + 1) % blessings.length;
+    render();
+  });
+
+  el.textContent = blessings[index];
 })();
 </script>
 
