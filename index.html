@@ -68,6 +68,11 @@
   .sticker-star1 { top: 90px; right: 20px; width: 34px; animation: spin 6s linear infinite; }
   .sticker-star2 { top: 160px; right: 60px; width: 22px; animation: spin 9s linear infinite reverse; }
   .sticker-charm { bottom: 20px; right: 16px; width: 50px; animation: bob 3s ease-in-out infinite; }
+.sticker-butterfly { top: 220px; right: 30px; width: 40px; animation: flutter 3.5s ease-in-out infinite; }
+.sticker-moon { top: 40px; left: 30px; width: 32px; animation: bob 4s ease-in-out infinite; }
+.sticker-rose { bottom: 160px; left: 18px; width: 44px; animation: bob 3.2s ease-in-out infinite; }
+
+  @keyframes flutter { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-14px) rotate(6deg); } }
 
   @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -430,6 +435,28 @@
   <circle cx="40" cy="47" r="5" fill="#fff"/>
 </svg>
 
+<svg class="sticker sticker-butterfly" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+  <line x1="50" y1="15" x2="50" y2="65" stroke="#7a4a5c" stroke-width="2"/>
+  <path d="M50 20 C30 5 10 15 15 35 C20 50 40 45 50 30 Z" fill="#2d2233" stroke="#7a4a5c" stroke-width="2"/>
+  <path d="M50 20 C70 5 90 15 85 35 C80 50 60 45 50 30 Z" fill="#3a2b42" stroke="#7a4a5c" stroke-width="2"/>
+  <path d="M50 32 C34 30 22 45 28 55 C34 63 46 55 50 42 Z" fill="#ffb6d1" stroke="#7a4a5c" stroke-width="1.5"/>
+  <path d="M50 32 C66 30 78 45 72 55 C66 63 54 55 50 42 Z" fill="#ffb6d1" stroke="#7a4a5c" stroke-width="1.5"/>
+</svg>
+
+<svg class="sticker sticker-moon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <path d="M38 8 C20 8 8 22 8 38 C8 50 18 58 30 58 C18 54 12 44 12 34 C12 20 22 10 38 8 Z" fill="#3a2b42" stroke="#7a4a5c" stroke-width="1.5"/>
+  <circle cx="42" cy="16" r="2" fill="#ffd3e8"/>
+  <circle cx="48" cy="26" r="1.3" fill="#ffd3e8"/>
+</svg>
+
+<svg class="sticker sticker-rose" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+  <path d="M40 90 L40 45" stroke="#3a5a3a" stroke-width="2.5"/>
+  <path d="M40 65 Q28 60 24 70" stroke="#3a5a3a" stroke-width="2" fill="none"/>
+  <path d="M40 75 Q52 70 56 80" stroke="#3a5a3a" stroke-width="2" fill="none"/>
+  <circle cx="40" cy="30" r="16" fill="#7a2b3a" stroke="#4a1520" stroke-width="1.5"/>
+  <path d="M40 18 C32 20 30 28 36 32 C30 32 28 40 40 42 C52 40 50 32 44 32 C50 28 48 20 40 18 Z" fill="#933347" stroke="#4a1520" stroke-width="1"/>
+</svg>
+
 <marquee behavior="scroll" direction="left">
   ♡ welcome to nanaqmi's cute corner ♡ don't forget to feed my tamaweb pet every day ♡ handmade necklaces now open for orders ♡ sign the guestbook before you leave ♡
 </marquee>
@@ -439,6 +466,7 @@
   <header class="banner">
     <h1>✧ nanaqmi's cute corner ✧</h1>
     <p class="tagline">silvia's art, anime obsessions & handmade charms 🎀</p>
+    <p style="font-size:11px; font-style:italic; color:#a56478; margin:4px 0 0;">"hunting your soul" ✧</p>
     <span class="stamp">est. 2024</span>
     <span class="stamp">98% cute</span>
     <span class="stamp">accepting commissions</span>
@@ -456,6 +484,7 @@
       <a class="navbtn" href="#vinted">vinted closet</a>
       <a class="navbtn" href="#gallery">art gallery</a>
       <a class="navbtn" href="#games">minigames</a>
+      <a class="navbtn" href="#taste">music & reads</a>
       <a class="navbtn" href="#friends">friends</a>
       <a class="navbtn" href="#guestbook">guestbook</a>
 
@@ -465,13 +494,18 @@
       <a class="navbtn" href="https://www.vinted.sk/member/126997752-nanaqmi" target="_blank">vinted closet</a>
 
       <div class="status-box">
-        current mood: 🌸 dreamy <br>
+        <!-- EDIT ME: update mood whenever hers changes -->
+        current mood: 😴 sleepy (╥﹏╥) <br>
         currently making: a new charm necklace <br>
+        currently reading: Metamorphosis (Kafka) <br>
         <span class="blink">● online now</span>
       </div>
     </nav>
 
     <main class="content">
+      <section class="about-box" style="margin-bottom:16px; font-size:12px; font-style:italic; text-align:center;">
+        who i'd like to meet: people who like to play games or handmake stuff, just like me ✧
+      </section>
 
       <section class="about-box" id="about">
         <h2 class="section-title">about me</h2>
@@ -479,10 +513,12 @@
           hii, i'm <b>Silvia</b>, but around here you can call me
           <b>nanaqmi</b> ✧ this is my little corner of the internet where
           i share my art, post my newest handmade necklaces, and gush
-          about anime and all things cute. i make everything by hand with
-          way too much love, so thank you for stopping by and supporting
-          a small creator 🎀 don't forget to feed my tamaweb pet, play the
-          minigames, and sign my guestbook before you go!
+          about anime and all things cute. honestly, most days i'm just
+          alone in my room making stuff or out shopping for cute little
+          things — i make everything by hand with way too much love, so
+          thank you for stopping by and supporting a small creator 🎀
+          don't forget to feed my tamaweb pet, play the minigames, and
+          sign my guestbook before you go!
         </p>
       </section>
 
@@ -495,8 +531,15 @@
           <b>bookmark this page and come feed her every day</b> 🥚💕
           (full credit to the Tamaweb devs for the game itself — i just live here now.)
         </p>
-        <iframe src="https://tamawebgame.github.io/" title="Tamaweb virtual pet game" width="100%" height="520" style="border:3px ridge #ff8fb3; border-radius:8px; max-width:480px; display:block; margin:10px auto 0;" loading="lazy" allow="autoplay"></iframe>
-        <p style="font-size:11px; text-align:center; margin-top:6px;">not loading? <a href="https://tamawebgame.github.io/" target="_blank">open Tamaweb in its own tab</a></p>
+        <div style="text-align:center; margin:10px 0 8px; font-family:'Comic Neue', cursive; font-size:11px; color:#c2447a; letter-spacing:0.5px;">
+          ✧ press play below to wake her up ✧
+        </div>
+        <div style="text-align:center; margin-bottom:8px;">
+          <img id="play-button" src="https://transparentpng.com" alt="Play" style="width:60px; cursor:pointer; filter: drop-shadow(0 0 4px #ff9dc0);">
+        </div>
+        <iframe id="tamaweb-frame" src="https://autosam.github.io/Tamaweb/" title="Tamaweb virtual pet game" width="100%" height="520" style="border:3px ridge #ff8fb3; border-radius:8px; max-width:480px; display:block; margin:10px auto 0; background:#fff;" loading="lazy" allow="autoplay" allowfullscreen></iframe>
+        <p style="font-size:11px; text-align:center; margin-top:6px; color:#c2447a;">// nanaqmi approved // take good care of her 🎀 //</p>
+        <p style="font-size:11px; text-align:center; margin-top:6px;">not loading? <a href="https://autosam.github.io/Tamaweb/" target="_blank">open Tamaweb in its own tab</a></p>
       </section>
 
       <section class="shop-box" id="shop">
@@ -687,6 +730,30 @@
         </div>
       </section>
 
+      <section class="friends-box" id="taste" style="margin-bottom:22px;">
+        <h2 class="section-title">🖤 when i'm not covered in glitter...</h2>
+        <p style="font-size:12px;">
+          ...i'm probably blasting 2000s goth & industrial metal — <b>And One</b>,
+          <b>KMFDM</b>, <b>Type O Negative</b>, <b>Deftones</b> are on constant
+          rotation. currently reading <i>Metamorphosis</i> by Kafka too, so yes,
+          i contain multitudes: bows and beetles both 🦋🖤
+        </p>
+
+        <div style="background:#fff; border:2px ridge #b23a63; border-radius:8px; padding:12px; margin-top:12px;">
+          <p style="font-size:11px; margin:0 0 8px; text-align:center; font-family:'Press Start 2P', monospace; color:#b23a63;">nanaqmi's jukebox</p>
+          <div id="jukeboxFrameWrap" style="position:relative; width:100%; max-width:480px; margin:0 auto; aspect-ratio:16/9; border-radius:6px; overflow:hidden; border:2px solid #7a4a5c;">
+            <iframe id="jukeboxFrame" width="100%" height="100%" src="https://www.youtube.com/embed/hkd4S9nLWTI" title="jukebox player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display:block;"></iframe>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:10px;">
+            <button class="navbtn jukebox-btn" style="width:auto; padding:6px 10px;" data-vid="hkd4S9nLWTI">And One – "Sometimes"</button>
+            <button class="navbtn jukebox-btn" style="width:auto; padding:6px 10px;" data-vid="kfH_jBNPRyU">KMFDM – "Amnesia"</button>
+            <button class="navbtn jukebox-btn" style="width:auto; padding:6px 10px;" data-vid="vFwYJYl5GUQ">Type O Negative – "Black No. 1"</button>
+            <button class="navbtn jukebox-btn" style="width:auto; padding:6px 10px;" data-vid="WPpDyIJdasg">Deftones – "Change"</button>
+          </div>
+          <p style="font-size:10px; text-align:center; margin-top:8px; color:#8a5064;">official music videos, streamed via YouTube — full credit to the artists/labels</p>
+        </div>
+      </section>
+
       <section class="friends-box" id="friends">
         <h2 class="section-title">friends & webring</h2>
         <p>go check out these lovely people too!</p>
@@ -737,6 +804,19 @@
     made with ♡ by a friend for silvia &nbsp;|&nbsp; best viewed at any size, unlike it's 2003 &nbsp;|&nbsp; © 2024-forever
   </footer>
 </div>
+
+<!-- ===== jukebox track switcher ===== -->
+<script>
+(function() {
+  const frame = document.getElementById('jukeboxFrame');
+  document.querySelectorAll('.jukebox-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const vid = btn.getAttribute('data-vid');
+      frame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1';
+    });
+  });
+})();
+</script>
 
 <!-- ===== secret bunny easter egg ===== -->
 <script>
