@@ -1048,6 +1048,20 @@
   }
   .game-btn:hover { box-shadow: 0 0 14px rgba(255,255,255,.9); }
 
+  /* ---- minigame: osu clicker ---- */
+  #osuGame {
+    display: block;
+    margin: 10px auto 0;
+    background: linear-gradient(#fbfbfd, #ececf2);
+    border: 1px solid var(--silver-1);
+    border-radius: 8px;
+    touch-action: none;
+    box-shadow: inset 0 0 20px rgba(255,255,255,.6);
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+
   /* ---- minigame: pet ---- */
   .pet-box { margin-top: 16px; }
   #mochiSvg { width: 110px; transition: transform 0.15s; filter: drop-shadow(0 0 8px rgba(255,255,255,.8)); }
@@ -1937,6 +1951,27 @@
         <iframe id="tamaweb-frame" src="https://autosam.github.io/Tamaweb/" title="Tamaweb virtual pet game" width="100%" height="520" style="border:3px ridge #9fa5b5; border-radius:8px; max-width:480px; display:block; margin:10px auto 0; background:#fff;" loading="lazy" allow="autoplay" allowfullscreen></iframe>
         <p style="font-size:11px; text-align:center; margin-top:6px; color:#71798c;">// nanaqmi approved // take good care of her ✧ //</p>
         <p style="font-size:11px; text-align:center; margin-top:6px;">not loading? <a href="https://autosam.github.io/Tamaweb/" target="_blank">open Tamaweb in its own tab</a></p>
+
+        <div class="divider" style="margin-top:20px;">✧ bonus minihra: Osu Clicker ✧</div>
+
+        <!-- // TIP: this is a small original rhythm-clicking game, inspired
+             // by osu!. Circles pop up with a shrinking ring around them —
+             // click each circle right as the ring reaches it for the best
+             // score (PERFECT / GOOD / OK). Miss the timing and your combo
+             // resets. It's plain canvas + JS, no outside site needed, so
+             // it'll never go down like an embedded game can. -->
+        <div class="game-box">
+          <h2 class="section-title" style="font-size:11px;">Osu Clicker</h2>
+          <p style="font-size:12px; margin:0 0 4px;">Klikni na kruh presne keď sa naň zovrie prstenec !!!✧</p>
+          <div class="game-hud">
+            <span id="osuScoreDisplay">✧skóre: 0</span>
+            <span id="osuComboDisplay">✧combo: 0</span>
+            <span id="osuTimeDisplay">✧čas: 45</span>
+            <span id="osuBestDisplay">✧Best: 0</span>
+          </div>
+          <canvas id="osuGame" width="480" height="320"></canvas>
+          <button class="game-btn" id="startOsuBtn">✧✧✧ start game ✧✧✧</button>
+        </div>
       </section>
 
     </main>
@@ -2298,6 +2333,220 @@
   ctx.fillStyle = '#71798c';
   ctx.textAlign = 'center';
   ctx.fillText('press start to catch some charms! ✨', W / 2, H / 2);
+})();
+</script>
+
+<!-- ===== minigame 2: osu clicker ===== -->
+<script>
+(function() {
+  const canvas = document.getElementById('osuGame');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const scoreDisplay = document.getElementById('osuScoreDisplay');
+  const comboDisplay = document.getElementById('osuComboDisplay');
+  const timeDisplay = document.getElementById('osuTimeDisplay');
+  const bestDisplay = document.getElementById('osuBestDisplay');
+  const startBtn = document.getElementById('startOsuBtn');
+
+  const W = canvas.width, H = canvas.height;
+  const PAD = 34;
+  const RADIUS = 26;
+  const APPROACH_TIME = 950;   // ms for the ring to shrink onto the circle (the "perfect" moment)
+  const GRACE_TIME = 300;      // ms after that where a click still counts, just for fewer points
+  const MAX_ON_SCREEN = 2;
+  const SPAWN_EVERY = 55;      // frames between spawn attempts (~0.9s at 60fps)
+
+  let circles = [];
+  let popups = [];             // floating "PERFECT!" / "MISS" text
+  let nextId = 1;
+  let score = 0, combo = 0, maxCombo = 0;
+  let timeLeft = 45;
+  let running = false;
+  let spawnTimer = 0;
+  let best = parseInt(localStorage.getItem('nanaqmiOsuBest') || '0', 10);
+  bestDisplay.textContent = 'best: ' + best;
+
+  function resetGame() {
+    circles = [];
+    popups = [];
+    score = 0; combo = 0; maxCombo = 0;
+    timeLeft = 45;
+    spawnTimer = 0;
+    scoreDisplay.textContent = 'score: 0';
+    comboDisplay.textContent = 'combo: 0';
+    timeDisplay.textContent = 'time: 45';
+  }
+
+  function spawnCircle() {
+    circles.push({
+      id: nextId++,
+      x: PAD + Math.random() * (W - PAD * 2),
+      y: PAD + Math.random() * (H - PAD * 2),
+      born: performance.now(),
+      hit: false
+    });
+  }
+
+  function addPopup(x, y, text, color) {
+    popups.push({ x, y, text, color, born: performance.now() });
+  }
+
+  function judge(elapsed) {
+    // elapsed measured against APPROACH_TIME, the moment the ring matches the circle
+    const diff = Math.abs(elapsed - APPROACH_TIME);
+    if (diff < 90) return { label: 'PERFECT!', pts: 300, color: '#cfdcff' };
+    if (diff < 220) return { label: 'good', pts: 100, color: '#9fa5b5' };
+    return { label: 'ok', pts: 50, color: '#565c73' };
+  }
+
+  function tryHit(clientX, clientY) {
+    if (!running) return;
+    const rect = canvas.getBoundingClientRect();
+    const scale = W / rect.width;
+    const x = (clientX - rect.left) * scale;
+    const y = (clientY - rect.top) * scale;
+    const now = performance.now();
+
+    // check newest-spawned circles first so overlaps favor the one still approaching
+    for (let i = circles.length - 1; i >= 0; i--) {
+      const c = circles[i];
+      if (c.hit) continue;
+      const dist = Math.hypot(x - c.x, y - c.y);
+      if (dist <= RADIUS) {
+        const elapsed = now - c.born;
+        if (elapsed <= APPROACH_TIME + GRACE_TIME) {
+          const result = judge(elapsed);
+          combo++;
+          maxCombo = Math.max(maxCombo, combo);
+          score += Math.round(result.pts * (1 + combo * 0.02));
+          scoreDisplay.textContent = 'score: ' + score;
+          comboDisplay.textContent = 'combo: ' + combo;
+          addPopup(c.x, c.y, result.label, result.color);
+          c.hit = true;
+          circles.splice(i, 1);
+          return;
+        }
+      }
+    }
+    // clicked empty space / too late — breaks combo, matching osu's miss-click feel
+    if (combo > 0) addPopup(x, y, '.', '#bfc3cb');
+    combo = 0;
+    comboDisplay.textContent = 'combo: 0';
+  }
+
+  canvas.addEventListener('mousedown', (e) => tryHit(e.clientX, e.clientY));
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches[0]) tryHit(e.touches[0].clientX, e.touches[0].clientY);
+    e.preventDefault();
+  }, { passive: false });
+
+  function drawCircle(c, now) {
+    const elapsed = now - c.born;
+    const t = Math.min(elapsed / APPROACH_TIME, 1);
+    const ringR = RADIUS + (1 - t) * RADIUS * 2.2;
+
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, RADIUS, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(207,220,255,.55)';
+    ctx.fill();
+    ctx.strokeStyle = '#9fa5b5';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, Math.max(ringR, RADIUS + 1), 0, Math.PI * 2);
+    ctx.strokeStyle = '#565c73';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.fillStyle = '#565c73';
+    ctx.font = '14px "Cinzel Decorative", serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✧', c.x, c.y);
+  }
+
+  function drawPopups(now) {
+    for (let i = popups.length - 1; i >= 0; i--) {
+      const p = popups[i];
+      const age = now - p.born;
+      if (age > 500) { popups.splice(i, 1); continue; }
+      ctx.globalAlpha = 1 - age / 500;
+      ctx.fillStyle = p.color;
+      ctx.font = "bold 13px 'Cormorant Garamond', serif";
+      ctx.textAlign = 'center';
+      ctx.fillText(p.text, p.x, p.y - age / 12);
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  function loop() {
+    if (!running) return;
+    const now = performance.now();
+    ctx.clearRect(0, 0, W, H);
+
+    spawnTimer++;
+    if (spawnTimer > SPAWN_EVERY && circles.length < MAX_ON_SCREEN) {
+      spawnCircle();
+      spawnTimer = 0;
+    }
+
+    for (let i = circles.length - 1; i >= 0; i--) {
+      const c = circles[i];
+      const elapsed = now - c.born;
+      if (elapsed > APPROACH_TIME + GRACE_TIME) {
+        // timed out — a miss, same as whiffing a click in osu
+        combo = 0;
+        comboDisplay.textContent = 'combo: 0';
+        addPopup(c.x, c.y, 'miss', '#c98686');
+        circles.splice(i, 1);
+        continue;
+      }
+      drawCircle(c, now);
+    }
+
+    drawPopups(now);
+    requestAnimationFrame(loop);
+  }
+
+  let countdownInterval;
+  function startGame() {
+    resetGame();
+    running = true;
+    startBtn.textContent = 'playing...';
+    startBtn.disabled = true;
+    loop();
+    countdownInterval = setInterval(() => {
+      timeLeft--;
+      timeDisplay.textContent = 'time: ' + timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        running = false;
+        startBtn.disabled = false;
+        startBtn.textContent = 'play again';
+        if (score > best) {
+          best = score;
+          localStorage.setItem('nanaqmiOsuBest', best);
+          bestDisplay.textContent = 'best: ' + best;
+        }
+        ctx.clearRect(0, 0, W, H);
+        ctx.font = "bold 20px 'Cormorant Garamond', serif";
+        ctx.fillStyle = '#71798c';
+        ctx.textAlign = 'center';
+        ctx.fillText('game over! score: ' + score, W / 2, H / 2 - 12);
+        ctx.font = "14px 'Cormorant Garamond', serif";
+        ctx.fillText('max combo: ' + maxCombo, W / 2, H / 2 + 14);
+      }
+    }, 1000);
+  }
+
+  startBtn.addEventListener('click', startGame);
+
+  // idle screen
+  ctx.font = "bold 16px 'Cormorant Garamond', serif";
+  ctx.fillStyle = '#71798c';
+  ctx.textAlign = 'center';
+  ctx.fillText('press start to click some circles! ✨', W / 2, H / 2);
 })();
 </script>
 
