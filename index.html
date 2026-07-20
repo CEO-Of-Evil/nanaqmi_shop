@@ -46,18 +46,18 @@
 
 <style>
   /* // TIP: These are the fonts used on the page.
-     //   - UnifrakturCook = the blackletter/gothic font on the big
-     //     "nanaqmi" title in the banner
      //   - Cinzel Decorative = the ornate gothic-elegant font used
-     //     for section headings
+     //     for section headings and the big "nanaqmi" title
      //   - Cormorant Garamond = the regular reading text
      //   - IM Fell English = the antique italic font used for the
-     //     little quotes (verse under the banner, blessing of the day)
+     //     little quotes (blessing of the day, secret note)
      // To use different fonts, browse https://fonts.google.com, click
      // a font, copy its @import line, and replace this whole line
      // with it — just remember to also update the font names further
-     // down in the CSS (search for the font's name in quotes). */
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=UnifrakturCook:wght@700&family=Press+Start+2P&display=swap');
+     // down in the CSS (search for the font's name in quotes). Only
+     // list fonts you're actually using — every extra family here is
+     // another file phones have to download before text can render. */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Press+Start+2P&display=swap');
 
   * { box-sizing: border-box; }
 
@@ -495,28 +495,28 @@
     width: 120px;
     margin: 0 auto 10px;
   }
-  /* // TIP: the dashed ring that slowly spins around your profile
-     // picture. Make it bigger/smaller by changing the width/height,
-     // or slow it down/speed it up by changing "30s". */
-  .pfp-wrap::before{
-    content:"";
+  /* // TIP: the slowly-spinning ring around your profile picture.
+     // It's an actual SVG circle (not a CSS "dashed border") because
+     // a dashed border on a circle doesn't distribute evenly around
+     // it — the dashes bunch up in one spot. The SVG version divides
+     // perfectly. To resize, scale the width/height + viewBox below
+     // together; to change dash spacing, edit "stroke-dasharray". */
+  .pfp-ring{
     position:absolute;
     top:50%; left:50%;
-    width:144px; height:144px;
+    width:150px; height:150px;
     transform: translate(-50%,-50%);
-    border-radius:50%;
-    border: 1.5px dashed rgba(159,165,181,.6);
-    animation: haloSpin 30s linear infinite;
+    animation: haloSpin 34s linear infinite;
     pointer-events:none;
   }
   .pfp-wrap::after{
     content:"";
     position:absolute;
     top:50%; left:50%;
-    width:158px; height:158px;
+    width:150px; height:150px;
     transform: translate(-50%,-50%);
     border-radius:50%;
-    background: radial-gradient(circle, transparent 62%, rgba(220,230,255,.4) 100%);
+    background: radial-gradient(circle, transparent 66%, rgba(220,230,255,.4) 100%);
     animation: bannerGlow 8s ease-in-out infinite;
     pointer-events:none;
   }
@@ -526,6 +526,7 @@
     display: block;
     margin: 0 auto;
     object-fit: cover;
+    object-position: center;
     padding: 6px;
     background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(225,230,245,.85), rgba(255,255,255,.95));
     box-shadow: 0 0 12px rgba(255,255,255,.9), 0 0 35px rgba(215,225,255,.7), inset 0 0 10px rgba(255,255,255,.8);
@@ -1107,6 +1108,44 @@
               MOBILE RESPONSIVENESS
   ========================================*/
   @media (max-width: 780px) {
+    /* // TIP: this block exists purely for phone performance. A
+       // "fixed" background has to be fully repainted by the browser
+       // on every scroll frame, which is what was causing the janky
+       // scrolling / the background flashing oddly on fast scrolls.
+       // "scroll" is dramatically cheaper and renders correctly. */
+    body { background-attachment: scroll, scroll; }
+
+    /* backdrop-filter (the frosted-glass blur look) is one of the
+       most expensive things a phone GPU can be asked to redraw,
+       especially stacked across several boxes at once while
+       scrolling — so it's turned off below 780px. Panels keep their
+       tint, just without the live blur behind them. */
+    .page-wrap, nav.sidebar, .about-box, .shop-box, .friends-box,
+    .guestbook-box, .game-box, .pet-box, #musicToggle, #scrollTopBtn, .lightbox {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    /* animated gradient-text "shimmer" + pulsing glow-shadow on every
+       section heading is one of the more expensive things to repaint
+       (it's re-rendering the text itself on every frame) — there can
+       be a dozen+ headings on one page, all animating at once, so
+       it's switched off below 780px in favor of a plain static color. */
+    h2.section-title {
+      animation: none;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      color: var(--silver-3);
+    }
+
+    /* same idea for the rotating/pulsing rings around the profile
+       picture, and the floating/pulsing banner title — cheap to
+       leave on for one element, but combined with everything else
+       above it adds up on slower phones. */
+    .pfp-ring, .pfp-wrap::after,
+    .banner-content h1, .pfp { animation: none; }
+
     .page-wrap { margin: 0; border-radius: 0; }
 
     .body-grid { grid-template-columns: 1fr; }
@@ -1189,7 +1228,7 @@
 <div class="page-corner br" aria-hidden="true"></div>
 
 <!-- ===== background music: moonlight.mp3 ===== -->
-<audio id="bgMusic" src="moonlight.mp3" loop preload="auto"></audio>
+<audio id="bgMusic" src="moonlight.mp3" loop preload="none"></audio></audio>
 <button id="musicToggle" aria-label="play/pause music" title="play/pause music">
   <svg class="icon" id="musicIconOn"><use href="#icon-speaker-on"></use></svg>
   <svg class="icon" id="musicIconOff" style="display:none;"><use href="#icon-speaker-off"></use></svg>
@@ -1395,6 +1434,9 @@
       <!-- // TIP: this is the round profile photo. Put a new photo in
            // the "pagepictures" folder and change the file name below. -->
       <div class="pfp-wrap">
+        <svg class="pfp-ring" viewBox="0 0 150 150" aria-hidden="true">
+          <circle cx="75" cy="75" r="72" fill="none" stroke="rgba(159,165,181,.65)" stroke-width="1.4" stroke-dasharray="1 7" stroke-linecap="round"/>
+        </svg>
         <img class="pfp" src="pagepictures/profile.png" alt="nanaqmi">
       </div>
 
@@ -1701,7 +1743,7 @@
         <div style="background:#fff; border:2px ridge #71798c; border-radius:8px; padding:12px; margin-top:12px;">
           <p style="font-size:11px; margin:0 0 8px; text-align:center; font-family:'Press Start 2P', monospace; color:#71798c;">nanaqmi's reading nook</p>
           <div id="bookFrameWrap" style="position:relative; width:100%; max-width:480px; margin:0 auto; aspect-ratio:3/4; border-radius:6px; overflow:hidden; border:2px solid #71798c; background:#e9e9ee;">
-            <iframe id="bookFrame" width="100%" height="100%" src="https://cdn.jsdelivr.net/gh/CEO-Of-Evil/nanaqmi_shop@main/knihy/kafka.pdf" title="book reader" style="display:block; border:none;"></iframe>
+            <iframe id="bookFrame" width="100%" height="100%" loading="lazy" src="https://cdn.jsdelivr.net/gh/CEO-Of-Evil/nanaqmi_shop@main/knihy/kafka.pdf" title="book reader" style="display:block; border:none;"></iframe>
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:10px;">
             <button class="navbtn book-btn" style="width:auto; padding:6px 10px;" data-src="https://cdn.jsdelivr.net/gh/CEO-Of-Evil/nanaqmi_shop@main/knihy/kafka.pdf">Kafka – "Metamorphosis"</button>
@@ -1717,8 +1759,19 @@
              // jukebox-btn"...>...</button> line and paste it in. -->
         <div style="background:#fff; border:2px ridge #71798c; border-radius:8px; padding:12px; margin-top:12px;">
           <p style="font-size:11px; margin:0 0 8px; text-align:center; font-family:'Press Start 2P', monospace; color:#71798c;">nanaqmi's jukebox</p>
-          <div id="jukeboxFrameWrap" style="position:relative; width:100%; max-width:480px; margin:0 auto; aspect-ratio:16/9; border-radius:6px; overflow:hidden; border:2px solid #71798c;">
-            <iframe id="jukeboxFrame" width="100%" height="100%" src="https://www.youtube.com/embed/wxmeCrm1a6Q" title="jukebox player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display:block;"></iframe>
+          <!-- // TIP: this starts as a plain clickable thumbnail, not
+               // a real YouTube player — YouTube's embed loads well
+               // over 1MB of its own JavaScript the instant it's on
+               // the page, even if nobody presses play. Swapping in
+               // the real player only happens once someone actually
+               // clicks, in the script near the end of the file
+               // (search "JUKEBOX FACADE"). -->
+          <div id="jukeboxFrameWrap" data-vid="wxmeCrm1a6Q" style="position:relative; width:100%; max-width:480px; margin:0 auto; aspect-ratio:16/9; border-radius:6px; overflow:hidden; border:2px solid #71798c; cursor:pointer; background:#000 url('https://img.youtube.com/vi/wxmeCrm1a6Q/hqdefault.jpg') center/cover no-repeat;">
+            <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+              <span style="width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; border:2px solid rgba(255,255,255,.85);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </span>
           </div>
           <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:10px;">
             <button class="navbtn jukebox-btn" style="width:auto; padding:6px 10px;" data-vid="wxmeCrm1a6Q">Barbie</button>
@@ -1910,14 +1963,35 @@
   </footer>
 </div>
 
-<!-- ===== jukebox track switcher ===== -->
+<!-- ===== JUKEBOX FACADE: only load the real YouTube player on click ===== -->
 <script>
 (function() {
-  const frame = document.getElementById('jukeboxFrame');
+  const wrap = document.getElementById('jukeboxFrameWrap');
+  if (!wrap) return;
+
+  function loadPlayer(vid) {
+    wrap.setAttribute('data-vid', vid);
+    wrap.style.cursor = '';
+    wrap.style.background = '';
+    wrap.innerHTML = '<iframe id="jukeboxFrame" width="100%" height="100%" src="https://www.youtube.com/embed/' + vid + '?autoplay=1" title="jukebox player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display:block;"></iframe>';
+  }
+
+  // clicking the thumbnail itself plays whichever track is current
+  wrap.addEventListener('click', function() {
+    if (document.getElementById('jukeboxFrame')) return; // already loaded
+    loadPlayer(wrap.getAttribute('data-vid'));
+  });
+
+  // clicking a track button loads/switches to that track directly
   document.querySelectorAll('.jukebox-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const vid = btn.getAttribute('data-vid');
-      frame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1';
+      const frame = document.getElementById('jukeboxFrame');
+      if (frame) {
+        frame.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1';
+      } else {
+        loadPlayer(vid);
+      }
     });
   });
 })();
@@ -1956,8 +2030,11 @@
 (function() {
   const field = document.getElementById('starField');
   if (!field) return;
-  // // TIP: change this number to have more/fewer stars.
-  const STAR_COUNT = 45;
+  // // TIP: change these numbers to have more/fewer stars. Phones get
+  // // fewer since lots of simultaneously-animating elements is what
+  // // was bogging down scrolling on mobile.
+  const isSmallScreen = window.matchMedia('(max-width: 780px)').matches;
+  const STAR_COUNT = isSmallScreen ? 15 : 45;
   for (let i = 0; i < STAR_COUNT; i++) {
     const s = document.createElement('span');
     s.className = 'star';
@@ -2063,6 +2140,14 @@
 <!-- ===== falling snow & hearts ===== -->
 <script>
 (function() {
+  // // TIP: this whole effect is skipped on phones/small screens on
+  // // purpose — lots of continuously-spawning, always-animating
+  // // elements plus filter:drop-shadow on each one is exactly the
+  // // kind of thing that makes scrolling feel janky on mobile, and
+  // // it was covering up the background picture while scrolling.
+  // // Raise/lower 780 to change where it cuts off.
+  if (window.matchMedia('(max-width: 780px)').matches) return;
+
   // weighted so snowflakes & hearts dominate, with sparkles mixed in
   const snowGlyphs = ['❄', '❅', '❆', '✦', '✧', '♡', '♡', '♥'];
   const driftClasses = ['', 'drift-a', 'drift-b', 'drift-c'];
