@@ -123,16 +123,15 @@
     font-size: 17px;
   }
 
-  /* // TIP: this is the big flower-vine frame around the whole page
+  /* // TIP: this is the flower-vine frame around the whole page
      // (stays put while you scroll). It's a free public-domain SVG
-     // from Wikimedia Commons, same one used on the panels above.
-     // To make the corners bigger/smaller, change the width/height.
-     // To hide them on tiny screens they already get smaller in the
-     // mobile media query further down. */
+     // from Wikimedia Commons. To make the corners bigger/smaller,
+     // change the width/height. They get even smaller on phones,
+     // in the mobile media query further down. */
   .page-corner{
     position:fixed;
-    width:150px; height:150px;
-    opacity:.55;
+    width:50px; height:50px;
+    opacity:.35;
     pointer-events:none;
     z-index:9997;
   }
@@ -738,46 +737,6 @@
     overflow: hidden;
   }
 
-  /* // TIP: these are the pretty flower-vine corners on every box.
-     // They're free public-domain SVGs from Wikimedia Commons. To
-     // swap the style, change the four url("...") lines below —
-     // just make sure to keep one image per corner (top-left,
-     // top-right, bottom-left, bottom-right) so they face the
-     // right way. */
-  .about-box::before, .shop-box::before, .friends-box::before, .guestbook-box::before, .game-box::before, .pet-box::before,
-  .about-box::after, .shop-box::after, .friends-box::after, .guestbook-box::after, .game-box::after, .pet-box::after {
-    content:"";
-    position:absolute;
-    width:90px; height:90px;
-    opacity:.5;
-    pointer-events:none;
-    z-index:0;
-  }
-  .about-box::before, .shop-box::before, .friends-box::before, .guestbook-box::before, .game-box::before, .pet-box::before{
-    top:-6px; left:-6px;
-    background: url("https://commons.wikimedia.org/wiki/Special:FilePath/Corner%20Ornament%20Black%20Up%20Left.svg") center/contain no-repeat;
-  }
-  .about-box::after, .shop-box::after, .friends-box::after, .guestbook-box::after, .game-box::after, .pet-box::after{
-    bottom:-6px; right:-6px;
-    background: url("https://commons.wikimedia.org/wiki/Special:FilePath/Corner%20Ornament%20Black%20Down%20Right.svg") center/contain no-repeat;
-  }
-
-  /* the two "off" corners of each box, added as their own layer so
-     every panel gets all four flower corners, not just two */
-  .about-box, .shop-box, .friends-box, .guestbook-box, .game-box, .pet-box {
-    background-image:
-      url("https://commons.wikimedia.org/wiki/Special:FilePath/Corner%20Ornament%20Black%20Up%20Right.svg"),
-      url("https://commons.wikimedia.org/wiki/Special:FilePath/Corner%20Ornament%20Black%20Down%20Left.svg");
-    background-repeat: no-repeat, no-repeat;
-    background-position: top -6px right -6px, bottom -6px left -6px;
-    background-size: 90px 90px, 90px 90px;
-    background-blend-mode: normal;
-  }
-  .about-box > *, .shop-box > *, .friends-box > *, .guestbook-box > *, .game-box > *, .pet-box > * {
-    position: relative;
-    z-index: 1;
-  }
-
   /* // TIP: the big ornamental first letter on the About Me intro.
      // Change "font-family" to any other font imported above, or
      // remove the whole rule if you'd rather not have it. */
@@ -1175,7 +1134,7 @@
     .sticker-butterfly { top: auto; bottom: 220px; width: 26px; }
     .sticker-rose { display: none; }
 
-    .page-corner { width: 90px; height: 90px; opacity: .4; }
+    .page-corner { width: 30px; height: 30px; opacity: .28; }
   }
 
   @media (max-width: 480px) {
@@ -1194,6 +1153,26 @@
 </head>
 
 <body>
+
+<!-- ================================================================
+     ART LIGHTBOX MODAL — do not delete. This one div powers the
+     click-to-enlarge / swipe-through viewer for every image in the
+     Galéria Umenia. It lives here, as a direct child of <body>
+     (rather than inside .page-wrap), on purpose: .page-wrap uses
+     backdrop-filter + overflow:hidden, which stops position:fixed
+     children from behaving like true full-screen overlays. Nothing
+     here needs editing.
+================================================================ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-stage" id="lightboxStage">
+    <span class="lightbox-caption" id="lightboxCaption"></span>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><svg class="icon"><use href="#icon-close"></use></svg></button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
+    <span class="lightbox-counter" id="lightboxCounter"></span>
+  </div>
+</div>
 
 <!-- // TIP: this empty div gets filled with twinkling stars by a
      // small script near the end of the file (search "STARFIELD").
@@ -1672,20 +1651,11 @@
       </section>
 
       <!-- ================================================================
-           ART LIGHTBOX MODAL — do not delete. This one div powers the
-           click-to-enlarge / swipe-through viewer for every image in
-           the Galéria Umenia above. Nothing here needs editing.
+           ART LIGHTBOX MODAL now lives right after <body> opens (see
+           near the top of the file). It was moved out of here because
+           a fixed-position modal nested inside a backdrop-filter/
+           overflow container doesn't behave as truly "fixed" on scroll.
       ================================================================ -->
-      <div class="lightbox" id="lightbox" aria-hidden="true">
-        <div class="lightbox-stage" id="lightboxStage">
-          <span class="lightbox-caption" id="lightboxCaption"></span>
-          <button class="lightbox-close" id="lightboxClose" aria-label="Close"><svg class="icon"><use href="#icon-close"></use></svg></button>
-          <img class="lightbox-img" id="lightboxImg" src="" alt="">
-          <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
-          <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
-          <span class="lightbox-counter" id="lightboxCounter"></span>
-        </div>
-      </div>
 
       <section id="games">
         <h2 class="section-title" style="margin-bottom:10px;"> ✧✧✧ Minihry ✧✧✧ </h2>
