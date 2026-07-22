@@ -57,7 +57,7 @@
      // down in the CSS (search for the font's name in quotes). Only
      // list fonts you're actually using — every extra family here is
      // another file phones have to download before text can render. */
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Press+Start+2P&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Italiana&family=Press+Start+2P&display=swap');
 
   * { box-sizing: border-box; }
 
@@ -413,25 +413,26 @@
     text-align:center; z-index:20; width:90%;
   }
   .banner-content h1{
-    /* // TIP: this is your big page title's font. It used to be a
-       // hard-to-read blackletter/gothic style — now it's Cinzel
-       // Decorative, which keeps the elegant gothic feel but is
-       // actually easy to read. Swap the font name (in quotes) for
+    /* // TIP: this is your big page title's font. "Italiana" is a
+       // thin, elegant display serif — soft and ethereal rather than
+       // heavy/gothic, and much easier on the eye than a decorative
+       // blackletter style. Swap the font name (in quotes) for
        // anything imported above if you want a different look. */
-    font-family:'Cinzel Decorative', 'Cinzel', serif;
-    font-size:55px;
-    letter-spacing:1px;
-    font-weight:700;
+    font-family:'Italiana', 'Cinzel', serif;
+    font-size:64px;
+    letter-spacing:9px;
+    font-weight:400;
     color:#3f4458;
-    text-shadow: 0 0 10px rgba(255,255,255,.9), 0 2px 4px rgba(0,0,0,.15);
+    text-shadow: 0 0 14px rgba(255,255,255,.95), 0 2px 6px rgba(0,0,0,.12);
     animation: titleFloat 7s ease-in-out infinite;
     margin:0;
-    text-transform: uppercase;
+    line-height: 1;
+    text-transform: lowercase;
   }
   .banner-choker{
     width:120px;
     height:3px;
-    margin:10px auto 0;
+    margin:16px auto 0;
     background: var(--goth-black);
     border-radius:2px;
     box-shadow: 0 0 8px rgba(0,0,0,.4);
@@ -448,22 +449,34 @@
     box-shadow: 0 0 6px rgba(0,0,0,.5);
   }
   .banner-content p.tagline{
-    font-size:23px;
+    font-size:16px;
     font-family:'Cormorant Garamond', serif;
-    font-style: normal;
-    letter-spacing:2px;
-    color:#4a4f66;
-    margin-top:10px;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing:2.5px;
+    text-transform: uppercase;
+    color:#5b6180;
+    margin: 14px 0 0;
   }
   .banner-content p.verse{
     font-size:16px;
-    font-family:'Cormorant Garamond', serif;
-    font-style: normal;
-    color:#565c73;
-    margin:6px 0 0;
-    letter-spacing: 1px;
+    font-family:'IM Fell English', serif;
+    font-style: italic;
+    color:#6b7188;
+    margin:8px 0 0;
+    letter-spacing: .5px;
   }
+  .banner-stamps{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:14px;
+  }
+  .banner-stamps .stamp{ margin:0; }
   @keyframes titleFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-5px);} }
+
 
   .stamp {
     display: inline-block;
@@ -669,6 +682,26 @@
   }
   .sidebar-gifs .gif-betty { width: 128px; }
   .sidebar-gifs .gif-mistake { width: 110px; }
+  .sidebar-gifs .gif-bw { width: 118px; }
+  .sidebar-gifs .gif-spin { width: 104px; }
+  .sidebar-gifs .gif-rose { width: 118px; }
+
+  /* ---- themed decorative gif rows (small trios dropped between sections) ---- */
+  .gif-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 10px auto 18px;
+  }
+  .gif-row img {
+    display: block;
+    border-radius: 6px;
+    border: 1px solid var(--silver-1);
+    background: rgba(255,255,255,.5);
+    box-shadow: 0 0 8px rgba(255,255,255,.65);
+  }
 
   /* ---- decorative content-width banner gifs (between sections) ---- */
   .banner-gif {
@@ -1176,8 +1209,8 @@
     .halo { width: 140px; height: 140px; top: 24px; }
     .banner-wings { top: 46%; }
     .banner-content { top: 68%; width: 94%; }
-    .banner-content h1 { font-size: 37px; letter-spacing: 3px; }
-    .banner-content p.tagline { font-size: 19px; }
+    .banner-content h1 { font-size: 42px; letter-spacing: 6px; }
+    .banner-content p.tagline { font-size: 13px; }
 
     /* shrink & tuck the floating stickers so they don't crowd small screens */
     .sticker-bunny { width: 44px; }
@@ -1194,12 +1227,65 @@
     body { font-size: 16px; }
     .angel-banner { height: 220px; }
     .halo { width: 110px; height: 110px; top: 18px; }
-    .banner-content h1 { font-size: 30px; letter-spacing: 2px; }
+    .banner-content h1 { font-size: 32px; letter-spacing: 4px; }
     .banner-content p.verse { font-size: 14px; }
     .stamp { font-size: 7px; padding: 3px 6px; }
     main.content { padding: 12px 12px; }
     .about-box, .shop-box, .friends-box, .guestbook-box, .game-box, .pet-box {
       padding: 14px 14px;
+    }
+  }
+
+  /* ================================================================
+     PHONE, ROTATED SIDEWAYS — show the desktop layout
+     ================================================================
+     // TIP: "orientation: landscape" + a low max-height is how you
+     // target a PHONE turned sideways specifically, without also
+     // catching real tablets/desktops (those are landscape too, but
+     // much taller). Phones in landscape are usually under ~500px
+     // tall, so that's the cutoff used here. Everything in this
+     // block simply repeats the normal (non-mobile) values from
+     // earlier in the file, so if you redesign the desktop header
+     // or sidebar later, copy the matching values down here too. */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .page-wrap { margin: 20px auto; border-radius: 14px; }
+
+    .body-grid { grid-template-columns: 230px 1fr; }
+
+    nav.sidebar {
+      border-right: 1px solid var(--silver-1);
+      border-bottom: none;
+      padding: 16px;
+    }
+
+    main.content { padding: 22px 26px; }
+
+    .angel-banner { height: 340px; }
+    .halo { width: 190px; height: 190px; top: 40px; }
+    .banner-wings { top: 50%; }
+    .banner-content { top: 65%; width: 90%; }
+    .banner-content h1 { font-size: 64px; letter-spacing: 9px; }
+    .banner-content p.tagline { font-size: 16px; }
+    .banner-content p.verse { font-size: 16px; }
+    .stamp { font-size: 8px; padding: 4px 8px; }
+
+    /* full-size decorative stickers + corners, just like on desktop */
+    .sticker-bunny { width: 64px; }
+    .sticker-charm { width: 46px; }
+    .sticker-star1 { width: 30px; }
+    .sticker-moon { width: 30px; }
+    .sticker-star2 { display: block; width: 20px; }
+    .sticker-butterfly { top: 220px; bottom: auto; width: 38px; }
+    .sticker-rose { display: block; width: 40px; }
+    .page-corner { width: 50px; height: 50px; opacity: .35; }
+
+    /* the phone still has a phone GPU even sideways, so the perf-saving
+       blur/animation cuts from the portrait mobile view stay off here */
+    body { background-attachment: scroll, scroll; }
+    .page-wrap, nav.sidebar, .about-box, .shop-box, .friends-box,
+    .guestbook-box, .game-box, .pet-box, #musicToggle, #scrollTopBtn, .lightbox {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
   }
 </style>
@@ -1437,9 +1523,11 @@
       <div class="banner-choker"></div>
       <p class="tagline">silvia's art, quiet obsessions &amp; handmade charms</p>
       <p class="verse">"hunting your soul" ✧</p>
-      <span class="stamp">est. 2024</span>
-      <span class="stamp">100% ethereal</span>
-      <span class="stamp">accepting commissions</span>
+      <div class="banner-stamps">
+        <span class="stamp">est. 2024</span>
+        <span class="stamp">100% ethereal</span>
+        <span class="stamp">accepting commissions</span>
+      </div>
     </div>
   </header>
 
@@ -1491,6 +1579,9 @@
            // swap the file names for any others in your "gifs" folder,
            // or delete a whole <img> line to remove one. -->
       <div class="sidebar-gifs">
+        <img class="gif-bw" src="gifs/black-white.gif" alt="black and white sidebar decoration">
+        <img class="gif-spin" src="gifs/angelspinning.gif" alt="spinning angel sidebar decoration">
+        <img class="gif-rose" src="gifs/rose.gif" alt="rose sidebar decoration">
         <img class="gif-betty" src="gifs/betty.gif" alt="pixel sidebar decoration">
         <img class="gif-mistake" src="gifs/angelbymistake.gif" alt="angel by mistake sticker">
       </div>
@@ -1538,6 +1629,14 @@
           play the minigames, take a look at my Art, buy my beautiful jewelery or just listen to the music. Oh and dont forget to sign my guestbook before you go!
         </p>
       </section>
+
+      <!-- // TIP: a little trio of vampire gifs, just for fun/mood —
+           // swap the file names or delete the whole div to remove. -->
+      <div class="gif-row">
+        <img src="gifs/vampire1.gif" alt="vampire sticker" width="70">
+        <img src="gifs/vampire2.gif" alt="vampire sticker" width="70">
+        <img src="gifs/vampire3.gif" alt="vampire sticker" width="70">
+      </div>
 
       <!-- // TIP: your virtual pet tamagotchi now lives at the very
            // bottom of the page as a big finale section (search for
@@ -1634,6 +1733,14 @@
 
 
       
+      <!-- // TIP: a little trio of hello kitty gifs, just for fun/mood —
+           // swap the file names or delete the whole div to remove. -->
+      <div class="gif-row">
+        <img src="gifs/hellokitty1.gif" alt="hello kitty sticker" width="80">
+        <img src="gifs/hellokitty2.gif" alt="hello kitty sticker" width="80">
+        <img src="gifs/hellokitty3.gif" alt="hello kitty sticker" width="80">
+      </div>
+
       <section class="gallery-section" id="gallery">
         <h2 class="section-title">Galéria Umenia</h2>
         <!-- // TIP: to add a new art piece, copy one whole
@@ -1705,6 +1812,14 @@
           
         </div>
       </section>
+
+      <!-- // TIP: a little trio of bat gifs, just for fun/mood —
+           // swap the file names or delete the whole div to remove. -->
+      <div class="gif-row">
+        <img src="gifs/bat1.gif" alt="bat sticker" width="70">
+        <img src="gifs/bat2.gif" alt="bat sticker" width="70">
+        <img src="gifs/bat3.gif" alt="bat sticker" width="70">
+      </div>
 
       <!-- ================================================================
            ART LIGHTBOX MODAL now lives right after <body> opens (see
@@ -1988,6 +2103,14 @@
     <figure>
       <img src="gifs/under construction. anime.gif" alt="under construction anime animation" width="140">
       <figcaption>pardon the dust</figcaption>
+    </figure>
+    <figure>
+      <img src="gifs/construction1.gif" alt="under construction animation" width="90">
+      <figcaption>work in progress</figcaption>
+    </figure>
+    <figure>
+      <img src="gifs/construction2.gif" alt="under construction animation" width="70">
+      <figcaption>beep boop building</figcaption>
     </figure>
   </div>
 
